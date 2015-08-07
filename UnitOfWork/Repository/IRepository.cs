@@ -6,7 +6,7 @@ using BaseDataModel;
 namespace Repository
 {
     /// <summary>
-    /// Basic interface for CRUD repository
+    /// Generic CRUD repository interface
     /// </summary>
     /// <typeparam name="T">Type must be inherited from IDataModel interface</typeparam>
     public interface IRepository<T> where T: IDataModel
@@ -41,7 +41,13 @@ namespace Repository
         /// <summary>
         /// Gets all items in persistence storage
         /// </summary>
-        /// <returns>All items in persistence storage</returns>
+        /// <returns>All items of type T in persistence storage</returns>
         IEnumerable<T> GetAll();
+
+        /// <summary>
+        /// Gets all items in persistence storage asyncronously
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation. The task result contains all items of type T in persistence storage.</returns>
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }
