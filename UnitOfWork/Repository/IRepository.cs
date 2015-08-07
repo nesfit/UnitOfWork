@@ -36,7 +36,7 @@ namespace Repository
         /// Gets item by id asyncronously
         /// </summary>
         /// <param name="id">Id of item to get</param>
-        /// <returns>A task that represents the asynchronous operation. The task result contains default ( T ) if source is empty; otherwise, the found element in persistence storage.</returns>
+        /// <returns>A task that represents the asynchronous operation. The task result contains default ( T ) if source is empty; otherwise, the found element in persistence storage</returns>
         Task<T> GetByIdAsync(Guid id);
 
         /// <summary>
