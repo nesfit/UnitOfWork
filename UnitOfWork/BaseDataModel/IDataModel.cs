@@ -3,7 +3,7 @@
 namespace BaseDataModel
 {
     /// <summary>
-    /// All data models in project must be inheritened from IDataModel interface
+    /// Base interface for all data models in project
     /// </summary>
     public interface IDataModel
     {

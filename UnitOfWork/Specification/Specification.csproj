@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39E436D1-3839-4CF7-BFAF-C0D2F2788024}</ProjectGuid>
+    <ProjectGuid>{433EF10D-D47A-43E3-9C3E-1895F28A1950}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Repository</RootNamespace>
-    <AssemblyName>Repository</AssemblyName>
+    <RootNamespace>Specification</RootNamespace>
+    <AssemblyName>Specification</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,17 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository.cs" />
+    <Compile Include="ISpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj">
       <Project>{ee6a9f9f-4a47-4e0b-8926-66935e7db6f1}</Project>
       <Name>BaseDataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Specification\Specification.csproj">
-      <Project>{433ef10d-d47a-43e3-9c3e-1895f28a1950}</Project>
-      <Name>Specification</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseDataModel;
+using Specification;
 
 namespace Repository
 {
@@ -47,7 +48,21 @@ namespace Repository
         /// <summary>
         /// Gets all items in persistence storage asyncronously
         /// </summary>
-        /// <returns>A task that represents the asynchronous operation. The task result contains all items of type T in persistence storage.</returns>
+        /// <returns>A task that represents the asynchronous operation. The task result contains all items of type T in persistence storage</returns>
         Task<IEnumerable<T>> GetAllAsync();
+
+        /// <summary>
+        /// Filters items by specification
+        /// </summary>
+        /// <param name="specification">Specification for filtering</param>
+        /// <returns>All items satisfied by specification of type T in persistence storage</returns>
+        IEnumerable<T> Filter(ISpecification<T> specification);
+
+        /// <summary>
+        /// Filters items by specification asyncronously
+        /// </summary>
+        /// <param name="specification">Specification for filtering</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains all items satisfied by specification of type T in persistence storage</returns>
+        Task<IEnumerable<T>> FilterAsync(ISpecification<T> specification);
     }
 }
