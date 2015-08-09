@@ -4,7 +4,10 @@ using Xunit;
 
 namespace UnitOfWork.Tests
 {
-    public class UnitTest1
+    /// <summary>
+    /// The unit tests.
+    /// </summary>
+    public class UnitTests
     {
         [Fact]
         public void TestMethod1()

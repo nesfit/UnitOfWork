@@ -40,17 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRepository.cs" />
+    <Compile Include="IRepositoryReaderAsync.cs" />
+    <Compile Include="IRepositoryReader.cs" />
+    <Compile Include="IRepositoryWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj">
       <Project>{ee6a9f9f-4a47-4e0b-8926-66935e7db6f1}</Project>
       <Name>BaseDataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Specification\Specification.csproj">
-      <Project>{433ef10d-d47a-43e3-9c3e-1895f28a1950}</Project>
-      <Name>Specification</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
