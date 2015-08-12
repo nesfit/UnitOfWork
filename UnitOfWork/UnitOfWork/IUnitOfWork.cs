@@ -1,11 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using BaseDataModel;
-using Repository;
-
-namespace UnitOfWork
+﻿namespace UnitOfWork
 {
     using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Unit Of Work interface
@@ -16,6 +12,12 @@ namespace UnitOfWork
         /// Begins transaction
         /// </summary>
         void BeginTransaction();
+        
+        /// <summary>
+        /// Begins transaction asynchronously
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task BeginTransactionAsync();
 
         /// <summary>
         /// Commits transaction
