@@ -12,12 +12,32 @@
 
         public override bool Equals(object obj)
         {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
             return Equals((Foo)obj);
         }
 
-        private bool Equals(Foo foo)
+        public override int GetHashCode()
         {
-            return foo != null && (Id == foo.Id && Name == foo.Name);
+            unchecked
+            {
+                return (Id.GetHashCode() * 397) ^ (Name?.GetHashCode() ?? 0);
+            }
+        }
+
+        protected bool Equals(Foo foo)
+        {
+            return Id.Equals(foo.Id) && string.Equals(Name, foo.Name);
         }
     }
 }
