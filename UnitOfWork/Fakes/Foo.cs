@@ -10,7 +10,7 @@
 
         public String Name { get; set; }
 
-        public override bool Equals(object obj)
+        public override Boolean Equals(Object obj)
         {
             if (ReferenceEquals(null, obj))
             {
@@ -27,7 +27,7 @@
             return Equals((Foo)obj);
         }
 
-        public override int GetHashCode()
+        public override Int32 GetHashCode()
         {
             unchecked
             {
@@ -35,9 +35,9 @@
             }
         }
 
-        protected bool Equals(Foo foo)
+        protected Boolean Equals(Foo foo)
         {
-            return Id.Equals(foo.Id) && string.Equals(Name, foo.Name);
+            return Id.Equals(foo.Id) && String.Equals(Name, foo.Name);
         }
     }
 }

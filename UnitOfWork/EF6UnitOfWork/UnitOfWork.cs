@@ -106,7 +106,7 @@
         {
             _transaction = null;
         }
-        private void Dispose(bool disposing)
+        private void Dispose(Boolean disposing)
         {
             if (disposing)
             {
