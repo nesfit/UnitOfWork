@@ -8,8 +8,8 @@ namespace Repository
     /// <summary>
     /// Generic asynchronous repository reader interface
     /// </summary>
-    /// <typeparam name="T">Type must be inherited from IDataModel interface</typeparam>
-    public interface IRepositoryReaderAsync<T> where T : IDataModel
+    /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
+    public interface IRepositoryReaderAsync<T> where T : class, IDataModel
     {
         /// <summary>
         /// Gets item by id asyncronously

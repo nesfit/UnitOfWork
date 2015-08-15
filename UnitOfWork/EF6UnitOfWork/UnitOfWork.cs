@@ -4,7 +4,6 @@
     using System.Data;
     using System.Data.Common;
     using System.Data.Entity;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
