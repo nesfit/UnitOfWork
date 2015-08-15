@@ -4,13 +4,12 @@
     using System.Data.Common;
     using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using Effort;
 
-    using EF6Repository.Tests.Fakes;
+    using EF6UnitOfWork.Tests.Fakes;
 
-    using Moq;
+    using Fakes;
 
     using Repository;
 

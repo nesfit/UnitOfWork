@@ -79,8 +79,6 @@
   <ItemGroup>
     <Compile Include="BaseRepositoryAsyncTests.cs" />
     <Compile Include="BaseRepositoryTests.cs" />
-    <Compile Include="Fakes\Foo.cs" />
-    <Compile Include="Fakes\FooContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +89,10 @@
     <ProjectReference Include="..\EF6Repository\EF6Repository.csproj">
       <Project>{7d81a222-01b8-401f-8c95-198dd14e0824}</Project>
       <Name>EF6Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fakes\Fakes.csproj">
+      <Project>{88807a91-2d5b-4caa-870c-fe3776f3d414}</Project>
+      <Name>Fakes</Name>
     </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{39e436d1-3839-4cf7-bfaf-c0d2f2788024}</Project>

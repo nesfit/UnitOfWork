@@ -29,11 +29,12 @@
 
         public virtual async Task<IEnumerable<T>> InsertRangeAsync(IEnumerable<T> items)
         {
-            foreach (var item in items)
+            var insertRange = items as T[] ?? items.ToArray();
+            foreach (var item in insertRange)
             {
                 await InsertAsync(item);
             }
-            return items;
+            return insertRange;
         }
 
         public virtual Task UpdateAsync(T item)
@@ -44,7 +45,7 @@
 
         public virtual async Task<T> DeleteAsync(Guid id)
         {
-            T item = await GetByIdAsync(id);
+            var item = await GetByIdAsync(id);
             return await DeleteAsync(item);
         }
 

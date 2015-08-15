@@ -1,7 +1,9 @@
-﻿namespace EF6Repository.Tests.Fakes
+﻿namespace EF6UnitOfWork.Tests.Fakes
 {
     using System.Data.Common;
     using System.Data.Entity;
+
+    using global::Fakes;
 
     public class FooContext : DbContext
     {

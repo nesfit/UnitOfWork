@@ -4,6 +4,10 @@
     using System.Data;
     using System.Data.Common;
     using System.Data.Entity;
+    using System.Data.Entity.Core;
+    using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Validation;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,7 +20,7 @@
     {
         private readonly DbContext _context;
         private readonly IsolationLevel _isolationLevel;
-        private DbTransaction _transaction;
+        private DbContextTransaction _transaction;
 
         public UnitOfWork(DbContext context, IsolationLevel isolationLevel)
         {
@@ -26,66 +30,92 @@
 
         public void BeginTransaction()
         {
-            if (_transaction == null)
-            {
-                if (_context.Database.Connection.State != ConnectionState.Open)
-                {
-                    _context.Database.Connection.Open();
-                }
-                _transaction = _context.Database.Connection.BeginTransaction(_isolationLevel);
-            }
+            _transaction = _context.Database.BeginTransaction(_isolationLevel);
         }
-
-        public async Task BeginTransactionAsync()
-        {
-            if (_transaction == null)
-            {
-                if (_context.Database.Connection.State != ConnectionState.Open)
-                {
-                    await _context.Database.Connection.OpenAsync();
-                }
-                _transaction = _context.Database.Connection.BeginTransaction(_isolationLevel);
-            }
-        }
-
+        
         public void Commit()
         {
             _transaction?.Commit();
+            CleanUpTransaction();
         }
 
         public void Rollback()
         {
             _transaction?.Rollback();
-            RollbackEntityStates();
+            CleanUpTransaction();
         }
 
+        /// <exception cref="DbUpdateException">An error occurred sending updates to the database.</exception>
+        /// <exception cref="DbEntityValidationException">
+        ///             The save was aborted because validation of entity property values failed.
+        ///             </exception>
+        /// <exception cref="DbUpdateConcurrencyException">
+        ///             A database command did not affect the expected number of rows. This usually indicates an optimistic 
+        ///             concurrency violation; that is, a row has been changed in the database since it was queried.
+        ///             </exception>
+        /// <exception cref="NotSupportedException">
+        ///             An attempt was made to use unsupported behavior such as executing multiple asynchronous commands concurrently
+        ///             on the same context instance.</exception>
+        /// <exception cref="ObjectDisposedException">The context or connection have been disposed.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///             Some error occurred attempting to process entities in the context either before or after sending commands
+        ///             to the database.
+        ///             </exception>
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
+        /// <exception cref="DbUpdateException">An error occurred sending updates to the database.</exception>
+        /// <exception cref="DbUpdateConcurrencyException">
+        ///             A database command did not affect the expected number of rows. This usually indicates an optimistic 
+        ///             concurrency violation; that is, a row has been changed in the database since it was queried.
+        ///             </exception>
+        /// <exception cref="DbUpdateConcurrencyException">
+        ///             A database command did not affect the expected number of rows. This usually indicates an optimistic 
+        ///             concurrency violation; that is, a row has been changed in the database since it was queried.
+        ///             </exception>
+        /// <exception cref="DbUpdateConcurrencyException">
+        ///             A database command did not affect the expected number of rows. This usually indicates an optimistic 
+        ///             concurrency violation; that is, a row has been changed in the database since it was queried.
+        ///             </exception>
+        /// <exception cref="DbEntityValidationException">
+        ///             The save was aborted because validation of entity property values failed.
+        ///             </exception>
+        /// <exception cref="NotSupportedException">
+        ///             An attempt was made to use unsupported behavior such as executing multiple asynchronous commands concurrently
+        ///             on the same context instance.</exception>
+        /// <exception cref="ObjectDisposedException">The context or connection have been disposed.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///             Some error occurred attempting to process entities in the context either before or after sending commands
+        ///             to the database.
+        ///             </exception>
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveChangesAsync(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
-        }
+            Dispose(true);
+        }      
 
-        #region Private Methods
+        #region Private Members
 
-        private void RollbackEntityStates()
+        private void CleanUpTransaction()
         {
-            throw new NotImplementedException();
+            _transaction = null;
+        }
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _transaction?.Dispose();
+                _context.Dispose();
+            }
+            // get rid of unmanaged resources
         }
 
-        #endregion Private Methods
+        #endregion Private Members
     }
 }

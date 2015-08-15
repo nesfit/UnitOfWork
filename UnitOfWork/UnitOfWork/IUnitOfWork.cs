@@ -1,6 +1,5 @@
 ﻿namespace UnitOfWork
 {
-    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -13,12 +12,6 @@
         /// </summary>
         void BeginTransaction();
         
-        /// <summary>
-        /// Begins transaction asynchronously
-        /// </summary>
-        /// <returns>A task that represents the asynchronous operation</returns>
-        Task BeginTransactionAsync();
-
         /// <summary>
         /// Commits transaction
         /// </summary>
@@ -39,12 +32,5 @@
         /// </summary>
         /// <returns>A task that represents the asynchronous operation</returns>
         Task SaveChangesAsync();
-
-        /// <summary>
-        /// Saves changes into the persistence storage asynchronously
-        /// </summary>
-        /// <param name="cancellationToken">Token to cancel operation</param>
-        /// <returns>A task that represents the asynchronous operation</returns>
-        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

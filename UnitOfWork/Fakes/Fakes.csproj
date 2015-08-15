@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{29EC2690-EE3B-496F-8489-0E6B81CD53C2}</ProjectGuid>
+    <ProjectGuid>{88807A91-2D5B-4CAA-870C-FE3776F3D414}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EF6UnitOfWork</RootNamespace>
-    <AssemblyName>EF6UnitOfWork</AssemblyName>
+    <RootNamespace>Fakes</RootNamespace>
+    <AssemblyName>Fakes</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,7 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,13 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Foo.cs" />
+    <Compile Include="FooContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
-      <Project>{56987bca-26ec-4dc9-93a5-b865734dcdef}</Project>
-      <Name>UnitOfWork</Name>
+    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj">
+      <Project>{ee6a9f9f-4a47-4e0b-8926-66935e7db6f1}</Project>
+      <Name>BaseDataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

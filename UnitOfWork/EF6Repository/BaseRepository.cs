@@ -29,11 +29,12 @@
 
         public IEnumerable<T> InsertRange(IEnumerable<T> items)
         {
-            foreach (var item in items)
+            var insertRange = items as T[] ?? items.ToArray();
+            foreach (var item in insertRange)
             {
                 Insert(item);
             }
-            return items;
+            return insertRange;
         }
 
         public virtual void Update(T item)
@@ -43,7 +44,7 @@
 
         public T Delete(Guid id)
         {
-            T item = GetById(id);
+            var item = GetById(id);
             return Delete(item);
         }
 
@@ -55,7 +56,7 @@
 
         public virtual T GetById(Guid id)
         {
-            var item = _dbSet.Find(id);
+            var item = _dbSet.FirstOrDefault(x => x.Id == id);
             return item;
         }
 

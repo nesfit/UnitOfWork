@@ -85,9 +85,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj">
+      <Project>{ee6a9f9f-4a47-4e0b-8926-66935e7db6f1}</Project>
+      <Name>BaseDataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EF6Repository\EF6Repository.csproj">
+      <Project>{7d81a222-01b8-401f-8c95-198dd14e0824}</Project>
+      <Name>EF6Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EF6UnitOfWork\EF6UnitOfWork.csproj">
       <Project>{29ec2690-ee3b-496f-8489-0e6b81cd53c2}</Project>
       <Name>EF6UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fakes\Fakes.csproj">
+      <Project>{88807a91-2d5b-4caa-870c-fe3776f3d414}</Project>
+      <Name>Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{39e436d1-3839-4cf7-bfaf-c0d2f2788024}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj">
       <Project>{56987bca-26ec-4dc9-93a5-b865734dcdef}</Project>
