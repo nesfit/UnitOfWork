@@ -28,8 +28,7 @@
                 unitOfWork is Ef6UnitOfWork,
                 "IUnitOfWork is not implemented by Ef6UnitOfWork class");
 
-            var unitOfWork1 = (Ef6UnitOfWork)unitOfWork;
-            _context = unitOfWork1.DbContext;
+            _context = ((Ef6UnitOfWork)unitOfWork).DbContext;
             _dbSet = _context.Set<T>();
         }
 
