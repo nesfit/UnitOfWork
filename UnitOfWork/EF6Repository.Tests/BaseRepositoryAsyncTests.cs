@@ -1,15 +1,22 @@
 ﻿namespace EF6Repository.Tests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Data;
     using System.Data.Common;
     using System.Data.Entity;
     using System.Linq;
     using System.Threading.Tasks;
     using Effort;
+
+    using EF6UnitOfWork;
     using EF6UnitOfWork.Tests.Fakes;
     using Fakes;
     using Moq;
     using Repository;
+
+    using UnitOfWork;
+
     using Xunit;
 
     public class BaseRepositoryAsyncTests
@@ -23,10 +30,12 @@
             DbConnection connection = DbConnectionFactory.CreateTransient();
             _context = new FooContext(connection);
 
-            var repository = new BaseRepositoryAsync<Foo>(_context);
+            var repository = new BaseRepositoryAsync<Foo>(new Ef6UnitOfWork(_context, IsolationLevel.Unspecified));
             _repositoryWriterAsync = repository;
             _repositoryReaderAsync = repository;
         }
+
+        #region Test CRUD
 
         [Fact]
         public async Task InsertsEntityAsync()
@@ -151,5 +160,101 @@
             Assert.Contains(foo1, items);
             Assert.Contains(foo2, items);
         }
+
+        #endregion CRUD
+
+        #region Test PreConditions
+
+        [Fact]
+        public void PreConditionFailsWhenNotEf6UnitOfWorkPassedToConstructor()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentException>(
+                () =>
+                    {
+                        new BaseRepositoryAsync<Foo>(new Mock<IUnitOfWork>().Object);
+                    });
+        }
+
+        [Fact]
+        public async Task PreConditionFailedWhenTryingToInsertNull()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                async () =>
+                    {
+                        await _repositoryWriterAsync.InsertAsync(null);
+                    });
+        }
+
+        [Fact]
+        public async Task PreConditionFailedWhenTryingToInsertNullRange()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                async () =>
+                    {
+                        await _repositoryWriterAsync.InsertRangeAsync(null);
+                    });
+        }
+
+        [Fact]
+        public async Task PreConditionFailedWhenTryingToInsertEmptyRange()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentException>(
+                async () =>
+                    {
+                        await _repositoryWriterAsync.InsertRangeAsync(new List<Foo>());
+                    });
+        }
+
+        [Fact]
+        public async Task PreConditionFailedWhenTryingToUpdateNullItem()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                async () =>
+                    {
+                        await _repositoryWriterAsync.UpdateAsync(null);
+                    });
+        }
+
+        [Fact]
+        public async Task PreConditionFailedWhenTryingToDeleteNullItem()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                async () =>
+                    {
+                        await _repositoryWriterAsync.DeleteAsync(null);
+                    });
+        }
+
+        #endregion Test PreConditions
     }
 }

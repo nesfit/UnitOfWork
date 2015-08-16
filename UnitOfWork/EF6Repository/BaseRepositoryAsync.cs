@@ -6,19 +6,31 @@
     using System.Linq;
     using System.Threading.Tasks;
     using BaseDataModel;
+
+    using EF6UnitOfWork;
+
     using Repository;
+
+    using UnitOfWork;
+
+    using static System.Diagnostics.Contracts.Contract;
 
     public class BaseRepositoryAsync<T> : 
         IRepositoryWriterAsync<T>, IRepositoryReaderAsync<T>
-        where T : class, IDataModel
+        where T : class, IDataModel, new()
     {
         private readonly DbContext _context;
-        private readonly IDbSet<T> _dbSet; 
+        private readonly IDbSet<T> _dbSet;
 
-        public BaseRepositoryAsync(DbContext context)
+        public BaseRepositoryAsync(IUnitOfWork unitOfWork)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            Requires<ArgumentException>(
+                unitOfWork is Ef6UnitOfWork,
+                "IUnitOfWork is not implemented by Ef6UnitOfWork class");
+
+            var unitOfWork1 = (Ef6UnitOfWork)unitOfWork;
+            _context = unitOfWork1.DbContext;
+            _dbSet = _context.Set<T>();
         }
 
         public virtual Task<T> InsertAsync(T item)

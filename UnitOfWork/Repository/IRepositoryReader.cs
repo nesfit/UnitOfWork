@@ -4,11 +4,16 @@ using BaseDataModel;
 
 namespace Repository
 {
+    using System.Diagnostics.Contracts;
+
+    using Repository.Contracts;
+
     /// <summary>
     /// Generic repository reader interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryReader<T> where T : class, IDataModel
+    [ContractClass(typeof(RepositoryReaderContract<>))]
+    public interface IRepositoryReader<T> where T : class, IDataModel, new()
     {
         /// <summary>
         /// Gets item by id

@@ -5,11 +5,16 @@ using BaseDataModel;
 
 namespace Repository
 {
+    using System.Diagnostics.Contracts;
+
+    using Repository.Contracts;
+
     /// <summary>
     /// Generic asynchronous repository reader interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryReaderAsync<T> where T : class, IDataModel
+    [ContractClass(typeof(RepositoryReaderAsyncContract<>))]
+    public interface IRepositoryReaderAsync<T> where T : class, IDataModel, new()
     {
         /// <summary>
         /// Gets item by id asyncronously

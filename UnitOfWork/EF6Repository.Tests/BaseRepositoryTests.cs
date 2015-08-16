@@ -1,17 +1,24 @@
 ﻿namespace EF6Repository.Tests
 {
     using System;
+    using System.Collections.Generic;
+    using System.Data;
     using System.Data.Common;
     using System.Data.Entity;
     using System.Linq;
 
     using Effort;
 
+    using EF6UnitOfWork;
     using EF6UnitOfWork.Tests.Fakes;
 
     using Fakes;
 
+    using Moq;
+
     using Repository;
+
+    using UnitOfWork;
 
     using Xunit;
 
@@ -26,10 +33,12 @@
             DbConnection connection = DbConnectionFactory.CreateTransient();
             _context = new FooContext(connection);
 
-            var repository = new BaseRepository<Foo>(_context);
+            var repository = new BaseRepository<Foo>(new Ef6UnitOfWork(_context, IsolationLevel.Unspecified));
             _repositoryWriter = repository;
             _repositoryReader = repository;
         }
+
+        #region Test CRUD
 
         [Fact]
         public void InsertsEntity()
@@ -154,6 +163,102 @@
             Assert.Contains(foo1, items);
             Assert.Contains(foo2, items);
         }
-        
+
+        #endregion Test CRUD
+
+        #region Test PreConditions
+
+        [Fact]
+        public void PreConditionFailsWhenNotEf6UnitOfWorkPassedToConstructor()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentException>(
+                () =>
+                    { new BaseRepository<Foo>(new Mock<IUnitOfWork>().Object); });
+        }
+
+
+        [Fact]
+        public void PreConditionFailedWhenTryingToInsertNull()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(
+                () =>
+                {
+                    _repositoryWriter.Insert(null);
+                });
+        }
+
+        [Fact]
+        public void PreConditionFailedWhenTryingToInsertNullRange()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(
+                () =>
+                {
+                    _repositoryWriter.InsertRange(null);
+                });
+        }
+
+        [Fact]
+        public void PreConditionFailedWhenTryingToInsertEmptyRange()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentException>(
+                () =>
+                {
+                    _repositoryWriter.InsertRange(new List<Foo>());
+                });
+        }
+
+        [Fact]
+        public void PreConditionFailedWhenTryingToUpdateNullItem()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(
+                () =>
+                {
+                    _repositoryWriter.Update(null);
+                });
+        }
+
+        [Fact]
+        public void PreConditionFailedWhenTryingToDeleteNullItem()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(
+                () =>
+                {
+                    _repositoryWriter.Delete(null);
+                });
+        }
+
+        #endregion Test PreConditions
+
+
     }
 }

@@ -16,17 +16,19 @@
     /// <summary>
     /// Entity Framework IUnitOfWork Implementations
     /// </summary>
-    public sealed class UnitOfWork: IUnitOfWork, IDisposable
+    public sealed class Ef6UnitOfWork: IUnitOfWork, IDisposable
     {
         private readonly DbContext _context;
         private readonly IsolationLevel _isolationLevel;
         private DbContextTransaction _transaction;
 
-        public UnitOfWork(DbContext context, IsolationLevel isolationLevel)
+        public Ef6UnitOfWork(DbContext context, IsolationLevel isolationLevel)
         {
             _context = context;
             _isolationLevel = isolationLevel;
         }
+
+        #region Interfaces Members
 
         public void BeginTransaction()
         {
@@ -98,10 +100,22 @@
         public void Dispose()
         {
             Dispose(true);
-        }      
+        }
+
+        #endregion Interfaces Members
+
+        #region Class Members
+
+        public DbContext DbContext => _context;
+
+        #endregion Class Members
 
         #region Private Members
 
+        ~Ef6UnitOfWork()
+        {
+            Dispose(false);
+        }
         private void CleanUpTransaction()
         {
             _transaction = null;

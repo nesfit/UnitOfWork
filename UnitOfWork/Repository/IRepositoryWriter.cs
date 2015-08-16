@@ -4,12 +4,16 @@ namespace Repository
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+
+    using Contracts;
 
     /// <summary>
     /// Generic writer repository interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryWriter<T> where T : class, IDataModel
+    [ContractClass(typeof(RepositoryWriterContract<>))]
+    public interface IRepositoryWriter<T> where T : class, IDataModel, new()
     {
         /// <summary>
         /// Inserts new item

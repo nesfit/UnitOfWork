@@ -4,21 +4,33 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
-    using System.Threading.Tasks;
+
     using BaseDataModel;
+
+    using EF6UnitOfWork;
+
     using Repository;
+
+    using UnitOfWork;
+
+    using static System.Diagnostics.Contracts.Contract;
 
     public class BaseRepository<T> : 
         IRepositoryWriter<T>, IRepositoryReader<T>
-        where T : class, IDataModel
+        where T : class, IDataModel, new()
     {
         private readonly DbContext _context;
         private readonly IDbSet<T> _dbSet; 
 
-        public BaseRepository(DbContext context)
+        public BaseRepository(IUnitOfWork unitOfWork)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            Requires<ArgumentException>(
+                unitOfWork is Ef6UnitOfWork,
+                "IUnitOfWork is not implemented by Ef6UnitOfWork class");
+
+            var unitOfWork1 = (Ef6UnitOfWork)unitOfWork;
+            _context = unitOfWork1.DbContext;
+            _dbSet = _context.Set<T>();
         }
 
         public virtual T Insert(T item)
@@ -27,7 +39,7 @@
             return item;
         }
 
-        public IEnumerable<T> InsertRange(IEnumerable<T> items)
+        public virtual IEnumerable<T> InsertRange(IEnumerable<T> items)
         {
             var insertRange = items as T[] ?? items.ToArray();
             foreach (var item in insertRange)
@@ -42,13 +54,13 @@
             _context.Entry(item).State = EntityState.Modified;
         }
 
-        public T Delete(Guid id)
+        public virtual T Delete(Guid id)
         {
             var item = GetById(id);
             return Delete(item);
         }
 
-        public T Delete(T item)
+        public virtual T Delete(T item)
         {
             _context.Entry(item).State = EntityState.Deleted;
             return item;
