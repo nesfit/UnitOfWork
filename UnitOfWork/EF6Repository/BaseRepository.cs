@@ -73,7 +73,7 @@
 
         public virtual IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet;
         }
     }
 }
