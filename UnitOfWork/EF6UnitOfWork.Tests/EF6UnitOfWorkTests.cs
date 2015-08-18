@@ -10,8 +10,6 @@
 
     using EF6Repository;
 
-    using global::EF6UnitOfWork.Tests.Fakes;
-
     using global::Fakes;
 
     using global::UnitOfWork;

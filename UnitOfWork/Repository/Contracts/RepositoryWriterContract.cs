@@ -3,10 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Linq;
-
     using BaseDataModel;
-
     using static System.Diagnostics.Contracts.Contract;
 
     [ContractClassFor(typeof(IRepositoryWriter<>))]
@@ -22,7 +19,6 @@
         IEnumerable<T> IRepositoryWriter<T>.InsertRange(IEnumerable<T> items)
         {
             Requires<ArgumentNullException>(items != null, "items can't be null");
-            Requires<ArgumentException>(items.Any(), "items count should be greater than zero");
 
             return default(IEnumerable<T>);
         }

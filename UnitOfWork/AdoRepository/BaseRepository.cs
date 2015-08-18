@@ -54,7 +54,9 @@
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            IDbCommand command = _commandProvider.UpdateCommand(_connection, null, item);
+
+            command.ExecuteNonQuery();
         }
 
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
@@ -88,7 +90,24 @@
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            IList<T> result = new List<T>();
+            IDbCommand command = _commandProvider.SelectAllCommand(_connection, null);
+            try
+            {
+                OpenConnection();
+                using (IDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(_dataMapper.Map(reader));
+                    }
+                }
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return result;
         }
 
         #region Private Methods
@@ -101,7 +120,7 @@
             }
         }
 
-        public T GetById(Guid id, Boolean closeConnection)
+        private T GetById(Guid id, Boolean closeConnection)
         {
             T result = null;
             IDbCommand command = _commandProvider.SelectByIdCommand(_connection, null, id);

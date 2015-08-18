@@ -35,7 +35,7 @@
             }
         }
 
-        protected Boolean Equals(Foo foo)
+        private Boolean Equals(Foo foo)
         {
             return Id.Equals(foo.Id) && String.Equals(Name, foo.Name);
         }

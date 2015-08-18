@@ -16,7 +16,7 @@
     /// <summary>
     /// Entity Framework IUnitOfWork Implementations
     /// </summary>
-    public sealed class Ef6UnitOfWork: IUnitOfWork, IDisposable
+    public class Ef6UnitOfWork: IUnitOfWork, IDisposable
     {
         private readonly DbContext _context;
         private readonly IsolationLevel _isolationLevel;
@@ -100,6 +100,7 @@
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion Interfaces Members
@@ -112,10 +113,7 @@
 
         #region Private Members
 
-        ~Ef6UnitOfWork()
-        {
-            Dispose(false);
-        }
+        
         private void CleanUpTransaction()
         {
             _transaction = null;
@@ -128,6 +126,10 @@
                 _context.Dispose();
             }
             // get rid of unmanaged resources
+        }
+        ~Ef6UnitOfWork()
+        {
+            Dispose(false);
         }
 
         #endregion Private Members

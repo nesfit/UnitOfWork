@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
+    using System.Linq;
 
     using AdoDataMapperAbstract;
 
@@ -91,6 +92,36 @@
                             new SqlParameter { ParameterName = "@Id", DbType = DbType.Guid, Value = item.Id });
                         command.Parameters.Add(
                             new SqlParameter { ParameterName = "@Name", DbType = DbType.String, Value = item.Name });
+
+                        return command;
+                    });
+            commandProviderStud.Setup(f => f.UpdateCommand(It.IsAny<IDbConnection>(), It.IsAny<IDbTransaction>(), It.IsAny<Foo>()))
+                .Returns(
+                    (IDbConnection connection, IDbTransaction transaction, Foo item) =>
+                    {
+                        IDbCommand command = new SqlCommand();
+
+                        command.Connection = connection;
+                        command.Transaction = _transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = "UPDATE T SET T.Name = @Name FROM [Foos] T WHERE T.Id = @Id";
+                        command.Parameters.Add(
+                            new SqlParameter { ParameterName = "@Id", DbType = DbType.Guid, Value = item.Id });
+                        command.Parameters.Add(
+                            new SqlParameter { ParameterName = "@Name", DbType = DbType.String, Value = item.Name });
+
+                        return command;
+                    });
+            commandProviderStud.Setup(f => f.SelectAllCommand(It.IsAny<IDbConnection>(), It.IsAny<IDbTransaction>()))
+                .Returns(
+                    (IDbConnection connection, IDbTransaction transaction) =>
+                    {
+                        IDbCommand command = new SqlCommand();
+
+                        command.Connection = connection;
+                        command.Transaction = _transaction;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = "SELECT * FROM [Foos]";
 
                         return command;
                     });
@@ -219,11 +250,57 @@
             CommitTransaction();
 
             //Act
+            BeginTransaction();
             _repositoryWriter.Delete(foo);
+            CommitTransaction();
             var fooFromDb = _repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.Null(fooFromDb);
+        }
+
+        [Fact]
+        public void UpdatesRecordCorrectly()
+        {
+            //Arrange
+            BeginTransaction();
+            var foo = new Foo { Id = Guid.NewGuid(), Name = "B" };
+            _repositoryWriter.Insert(foo);
+            CommitTransaction();
+
+            //Act
+            foo.Name = "A";
+            BeginTransaction();
+            _repositoryWriter.Update(foo);
+            CommitTransaction();
+            var fooFromDb = _repositoryReader.GetById(foo.Id);
+
+            //Assert
+            Assert.Equal("A", fooFromDb.Name);
+        }
+
+        [Fact]
+        public void GetsAllCorrectly()
+        {
+            //Arrange
+            BeginTransaction();
+            IDbCommand command = new SqlCommand("DELETE FROM [Foos]");
+            command.Connection = _connection;
+            command.Transaction = _transaction;
+            command.ExecuteNonQuery();
+            var foo1 = new Foo { Id = Guid.NewGuid(), Name = "A" };
+            var foo2 = new Foo { Id = Guid.NewGuid(), Name = "B" };
+            _repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            CommitTransaction();
+
+            //Act
+            var foos = _repositoryReader.GetAll().ToList();
+
+            //Assert
+            Assert.Equal(2, foos.Count);
+
+            Assert.Contains(foo1, foos);
+            Assert.Contains(foo2, foos);
         }
 
         #endregion Test CRUD
@@ -260,22 +337,7 @@
                     _repositoryWriter.InsertRange(null);
                 });
         }
-
-        [Fact]
-        public void PreConditionFailedWhenTryingToInsertEmptyRange()
-        {
-            //Arrange
-
-            //Act
-
-            //Assert
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _repositoryWriter.InsertRange(new List<Foo>());
-                });
-        }
-
+        
         [Fact]
         public void PreConditionFailedWhenTryingToUpdateNullItem()
         {
