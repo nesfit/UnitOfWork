@@ -1,34 +1,27 @@
-﻿namespace EF6Repository.Tests
+﻿// pluskal
+
+using System;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using Effort;
+using EF6UnitOfWork;
+using Fakes;
+using Moq;
+using Repository;
+using UnitOfWork;
+using Xunit;
+
+namespace EF6Repository.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.Common;
-    using System.Data.Entity;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Effort;
-
-    using EF6UnitOfWork;
-
-    using Fakes;
-
-    using Moq;
-
-    using Repository;
-
-    using UnitOfWork;
-
-    using Xunit;
-
     public class BaseRepositoryTests
     {
         private readonly DbContext _context;
-        private readonly IRepositoryWriter<Foo> _repositoryWriter;
         private readonly IRepositoryReader<Foo> _repositoryReader;
-        private readonly IRepositoryWriterAsync<Foo> _repositoryWriterAsync;
         private readonly IRepositoryReaderAsync<Foo> _repositoryReaderAsync;
+        private readonly IRepositoryWriter<Foo> _repositoryWriter;
+        private readonly IRepositoryWriterAsync<Foo> _repositoryWriterAsync;
 
         public BaseRepositoryTests()
         {
@@ -49,7 +42,7 @@
         {
             //Arrange
             var initialCount = this._context.Set<Foo>().Count();
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo);
@@ -65,11 +58,11 @@
         {
             //Arrange
             var initialCount = this._context.Set<Foo>().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
-            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            this._repositoryWriter.InsertRange(new[] {foo1, foo2});
             this._context.SaveChanges();
 
             //Assert
@@ -77,12 +70,12 @@
             Assert.Contains(foo1, this._context.Set<Foo>().AsEnumerable());
             Assert.Contains(foo2, this._context.Set<Foo>().AsEnumerable());
         }
-        
+
         [Fact]
         public void DeletesEntity()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._context.SaveChanges();
             var initialCount = this._context.Set<Foo>().Count();
@@ -100,7 +93,7 @@
         public void DeletesEntityById()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._context.SaveChanges();
             var initialCount = this._context.Set<Foo>().Count();
@@ -129,7 +122,7 @@
         public void UpdatesEntity()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid(), Name = "A"};
+            var foo = new Foo {Id = Guid.NewGuid(), Name = "A"};
             this._repositoryWriter.Insert(foo);
             this._context.SaveChanges();
 
@@ -147,7 +140,7 @@
         public void GetsItemById()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._context.SaveChanges();
 
@@ -162,13 +155,10 @@
         public void GetsAll()
         {
             //Arrange
-            foreach (var f in this._context.Set<Foo>())
-            {
-                this._repositoryWriter.Delete(f);
-            }
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
-            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            foreach (var f in this._context.Set<Foo>()) this._repositoryWriter.Delete(f);
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
+            this._repositoryWriter.InsertRange(new[] {foo1, foo2});
             this._context.SaveChanges();
 
             //Act
@@ -188,7 +178,7 @@
         {
             //Arrange
             var initialCount = this._context.Set<Foo>().Count();
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
 
             //Act
             await this._repositoryWriterAsync.InsertAsync(foo);
@@ -204,11 +194,11 @@
         {
             //Arrange
             var initialCount = this._context.Set<Foo>().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
-            await this._repositoryWriterAsync.InsertRangeAsync(new[] { foo1, foo2 });
+            await this._repositoryWriterAsync.InsertRangeAsync(new[] {foo1, foo2});
             await this._context.SaveChangesAsync();
 
             //Assert
@@ -221,7 +211,7 @@
         public async Task DeletesEntityAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             this._context.SaveChanges();
             var initialCount = this._context.Set<Foo>().Count();
@@ -239,7 +229,7 @@
         public async Task DeletesEntityByIdAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._context.SaveChangesAsync();
             var initialCount = this._context.Set<Foo>().Count();
@@ -270,7 +260,7 @@
         public async Task UpdatesEntityAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid(), Name = "A" };
+            var foo = new Foo {Id = Guid.NewGuid(), Name = "A"};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._context.SaveChangesAsync();
 
@@ -288,7 +278,7 @@
         public async Task GetsItemByIdAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._context.SaveChangesAsync();
 
@@ -303,13 +293,10 @@
         public async Task GetsAllAsync()
         {
             //Arrange
-            foreach (var f in this._context.Set<Foo>())
-            {
-                await this._repositoryWriterAsync.DeleteAsync(f);
-            }
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
-            await this._repositoryWriterAsync.InsertRangeAsync(new[] { foo1, foo2 });
+            foreach (var f in this._context.Set<Foo>()) await this._repositoryWriterAsync.DeleteAsync(f);
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
+            await this._repositoryWriterAsync.InsertRangeAsync(new[] {foo1, foo2});
             await this._context.SaveChangesAsync();
 
             //Act
@@ -333,8 +320,7 @@
 
             //Assert
             Assert.Throws<ArgumentException>(
-                () =>
-                    { new BaseRepository<Foo>(new Mock<IUnitOfWork>().Object); });
+                () => { new BaseRepository<Foo>(new Mock<IUnitOfWork>().Object); });
         }
 
         [Fact]
@@ -346,10 +332,7 @@
 
             //Assert
             Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    this._repositoryWriter.Insert(null);
-                });
+                () => { this._repositoryWriter.Insert(null); });
         }
 
         [Fact]
@@ -361,12 +344,9 @@
 
             //Assert
             Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    this._repositoryWriter.InsertRange(null);
-                });
+                () => { this._repositoryWriter.InsertRange(null); });
         }
-        
+
         [Fact]
         public void PreConditionFailedWhenTryingToUpdateNullItem()
         {
@@ -376,10 +356,7 @@
 
             //Assert
             Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    this._repositoryWriter.Update(null);
-                });
+                () => { this._repositoryWriter.Update(null); });
         }
 
         [Fact]
@@ -391,10 +368,7 @@
 
             //Assert
             Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    this._repositoryWriter.Delete(null);
-                });
+                () => { this._repositoryWriter.Delete(null); });
         }
 
         #endregion Test PreConditions

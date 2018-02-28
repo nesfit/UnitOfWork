@@ -1,30 +1,21 @@
-﻿namespace Fakes
+﻿// pluskal
+
+using System;
+using BaseDataModel;
+
+namespace Fakes
 {
-    using System;
-
-    using BaseDataModel;
-
-    public class Foo: IDataModel
+    public class Foo : IDataModel
     {
-        public Guid Id { get; set; }
-
         public String Name { get; set; }
+        public Guid Id { get; set; }
 
         public override Boolean Equals(Object obj)
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-            if (obj.GetType() != this.GetType())
-            {
-                return false;
-            }
-            return this.Equals((Foo)obj);
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return this.Equals((Foo) obj);
         }
 
         public override Int32 GetHashCode()
