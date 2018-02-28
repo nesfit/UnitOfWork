@@ -30,9 +30,9 @@
 
         public BaseRepositoryTests()
         {
-            _connection = new SqlConnection(@"Data Source=(localdb)\v11.0.;
-                                                Initial Catalog=AdoUoWTestDb;
-                                                Integrated Security=True");
+            _connection = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;
+                                                     Initial Catalog=AdoUoWTestDb;
+                                                     Integrated Security=true");
 
             #region Mock
             
