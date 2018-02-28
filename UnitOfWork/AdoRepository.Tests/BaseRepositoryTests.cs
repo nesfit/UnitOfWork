@@ -20,8 +20,6 @@
 
     public class BaseRepositoryTests:IDisposable
     {
-        private readonly IAdoDbCommandProvider<Foo> _commandProvider;
-        private readonly IAdoDataMapper<Foo> _dataMapper;
 
         private IDbTransaction _transaction;
         private readonly IDbConnection _connection;
@@ -45,7 +43,6 @@
                             Id = Guid.Parse(reader["Id"].ToString()),
                             Name = reader["Name"].ToString()
                         });
-            this._dataMapper = dataMapperStup.Object;
 
             var commandProviderStud = new Mock<IAdoDbCommandProvider<Foo>>();
             commandProviderStud.Setup(f => f.SelectByIdCommand(It.IsAny<IDbConnection>(), It.IsAny<IDbTransaction>(), It.IsAny<Guid>()))
@@ -125,12 +122,9 @@
 
                         return command;
                     });
-
-            this._commandProvider = commandProviderStud.Object;
-
             #endregion
 
-            var repository = new BaseRepository<Foo>(this._connection, this._commandProvider, this._dataMapper);
+            var repository = new BaseRepository<Foo>(this._connection, commandProviderStud.Object, dataMapperStup.Object);
             this._repositoryWriter = repository;
             this._repositoryReader = repository;
 
