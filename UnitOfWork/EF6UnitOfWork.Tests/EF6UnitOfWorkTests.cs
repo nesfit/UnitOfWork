@@ -10,9 +10,9 @@
 
     using EF6Repository;
 
-    using global::Fakes;
+    using Fakes;
 
-    using global::UnitOfWork;
+    using UnitOfWork;
     using Moq;
 
     using Repository;
@@ -29,30 +29,30 @@
         public EF6UnitOfWorkTests()
         {
             DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
-            _context = new FooContext(connection);
+            this._context = new FooContext(connection);
 
-            _unitOfWork = new Ef6UnitOfWork(_context, IsolationLevel.Unspecified);
+            this._unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
 
-            var repository = new BaseRepository<Foo>(_unitOfWork);
-            _repositoryWriter = repository;
-            _repositoryReader = repository;
+            var repository = new BaseRepository<Foo>(this._unitOfWork);
+            this._repositoryWriter = repository;
+            this._repositoryReader = repository;
         }
         
         [Fact]
         public void SavesChanges()
         {
             //Arrange
-            var initialCount = _repositoryReader.GetAll().Count();
+            var initialCount = this._repositoryReader.GetAll().Count();
             var foo1 = new Foo { Id = Guid.NewGuid() };
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            _repositoryWriter.Insert(foo1);
-            _repositoryWriter.Insert(foo2);
-            _unitOfWork.SaveChanges();
+            this._repositoryWriter.Insert(foo1);
+            this._repositoryWriter.Insert(foo2);
+            this._unitOfWork.SaveChanges();
 
             //Assert
-            var all = _repositoryReader.GetAll();
+            var all = this._repositoryReader.GetAll();
             Assert.Equal(initialCount + 2, all.Count());
             Assert.Contains(foo1, all);
             Assert.Contains(foo2, all);
@@ -62,17 +62,17 @@
         public async Task SavesChangesAsync()
         {
             //Arrange
-            var initialCount = _repositoryReader.GetAll().Count();
+            var initialCount = this._repositoryReader.GetAll().Count();
             var foo1 = new Foo { Id = Guid.NewGuid() };
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            _repositoryWriter.Insert(foo1);
-            _repositoryWriter.Insert(foo2);
-            await _unitOfWork.SaveChangesAsync();
+            this._repositoryWriter.Insert(foo1);
+            this._repositoryWriter.Insert(foo2);
+            await this._unitOfWork.SaveChangesAsync();
 
             //Assert
-            var all = _repositoryReader.GetAll();
+            var all = this._repositoryReader.GetAll();
             Assert.Equal(initialCount + 2, all.Count());
             Assert.Contains(foo1, all);
             Assert.Contains(foo2, all);
@@ -82,20 +82,20 @@
         public void CommitsTransactionCorrectly()
         {
             //Arrange
-            var initialCount = _repositoryReader.GetAll().Count();
+            var initialCount = this._repositoryReader.GetAll().Count();
             var foo1 = new Foo { Id = Guid.NewGuid() };
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            _unitOfWork.BeginTransaction();
-            _repositoryWriter.Insert(foo1);
-            _unitOfWork.SaveChanges();
-            _repositoryWriter.Insert(foo2);
-            _unitOfWork.SaveChanges();
-            _unitOfWork.Commit();
+            this._unitOfWork.BeginTransaction();
+            this._repositoryWriter.Insert(foo1);
+            this._unitOfWork.SaveChanges();
+            this._repositoryWriter.Insert(foo2);
+            this._unitOfWork.SaveChanges();
+            this._unitOfWork.Commit();
 
             //Assert
-            var all = _repositoryReader.GetAll();
+            var all = this._repositoryReader.GetAll();
             Assert.Equal(initialCount + 2, all.Count());
             Assert.Contains(foo1, all);
             Assert.Contains(foo2, all);
@@ -105,20 +105,20 @@
         public void RollsBackTransactionCorrectly()
         {
             //Arrange
-            var initialCount = _repositoryReader.GetAll().Count();
+            var initialCount = this._repositoryReader.GetAll().Count();
             var foo1 = new Foo { Id = Guid.NewGuid() };
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            _unitOfWork.BeginTransaction();
-            _repositoryWriter.Insert(foo1);
-            _unitOfWork.SaveChanges();
-            _repositoryWriter.Insert(foo2);
-            _unitOfWork.SaveChanges();
-            _unitOfWork.Rollback();
+            this._unitOfWork.BeginTransaction();
+            this._repositoryWriter.Insert(foo1);
+            this._unitOfWork.SaveChanges();
+            this._repositoryWriter.Insert(foo2);
+            this._unitOfWork.SaveChanges();
+            this._unitOfWork.Rollback();
 
             //Assert
-            var all = _repositoryReader.GetAll();
+            var all = this._repositoryReader.GetAll();
             Assert.Equal(initialCount, all.Count());
             Assert.DoesNotContain(foo1, all);
             Assert.DoesNotContain(foo2, all);
@@ -130,7 +130,7 @@
             //Arrange
             DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
             var context = new FooContext(connection);
-            var unitOfWork = new Ef6UnitOfWork(_context, IsolationLevel.Unspecified);
+            var unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
             var repository = new BaseRepository<Foo>(unitOfWork);
 
             //Act

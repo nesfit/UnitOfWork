@@ -24,20 +24,20 @@
             {
                 return false;
             }
-            return Equals((Foo)obj);
+            return this.Equals((Foo)obj);
         }
 
         public override Int32 GetHashCode()
         {
             unchecked
             {
-                return (Id.GetHashCode() * 397) ^ (Name?.GetHashCode() ?? 0);
+                return (this.Id.GetHashCode() * 397) ^ (this.Name?.GetHashCode() ?? 0);
             }
         }
 
         private Boolean Equals(Foo foo)
         {
-            return Id.Equals(foo.Id) && String.Equals(Name, foo.Name);
+            return this.Id.Equals(foo.Id) && String.Equals(this.Name, foo.Name);
         }
     }
 }

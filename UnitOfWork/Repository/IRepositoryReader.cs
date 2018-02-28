@@ -6,7 +6,7 @@ namespace Repository
 {
     using System.Diagnostics.Contracts;
 
-    using Repository.Contracts;
+    using Contracts;
 
     /// <summary>
     /// Generic repository reader interface

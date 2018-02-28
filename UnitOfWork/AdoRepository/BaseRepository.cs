@@ -26,15 +26,15 @@
             IAdoDbCommandProvider<T> commandProvider, 
             IAdoDataMapper<T> dataMapper)
         {
-            _connection = connection;
-            _commandProvider = commandProvider;
-            _dataMapper = dataMapper;
+            this._connection = connection;
+            this._commandProvider = commandProvider;
+            this._dataMapper = dataMapper;
         }
 
         public T Insert(T item)
         {
             T result = null;
-            IDbCommand command = _commandProvider.InsertCommand(_connection, null, item);
+            IDbCommand command = this._commandProvider.InsertCommand(this._connection, null, item);
             
             command.ExecuteNonQuery();
             result = item;
@@ -47,14 +47,14 @@
             var insertRange = items as T[] ?? items.ToArray();
             foreach (var item in insertRange)
             {
-                Insert(item);
+                this.Insert(item);
             }
             return insertRange;
         }
 
         public void Update(T item)
         {
-            IDbCommand command = _commandProvider.UpdateCommand(_connection, null, item);
+            IDbCommand command = this._commandProvider.UpdateCommand(this._connection, null, item);
 
             command.ExecuteNonQuery();
         }
@@ -62,20 +62,20 @@
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         public T Delete(Guid id)
         {
-            T item = GetById(id, false);
+            T item = this.GetById(id, false);
 
             if (item == null)
             {
                 throw new ArgumentException($"Item of type [{typeof(T).FullName}] with Id = [{id}] not found");
             }
 
-            return Delete(item);
+            return this.Delete(item);
         }
 
         public T Delete(T item)
         {
             T result = null;
-            IDbCommand command = _commandProvider.DeleteCommand(_connection, null, item);
+            IDbCommand command = this._commandProvider.DeleteCommand(this._connection, null, item);
 
             command.ExecuteNonQuery();
             result = item;
@@ -85,27 +85,27 @@
 
         public T GetById(Guid id)
         {
-            return GetById(id, true);
+            return this.GetById(id, true);
         }
 
         public IEnumerable<T> GetAll()
         {
             IList<T> result = new List<T>();
-            IDbCommand command = _commandProvider.SelectAllCommand(_connection, null);
+            IDbCommand command = this._commandProvider.SelectAllCommand(this._connection, null);
             try
             {
-                OpenConnection();
+                this.OpenConnection();
                 using (IDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        result.Add(_dataMapper.Map(reader));
+                        result.Add(this._dataMapper.Map(reader));
                     }
                 }
             }
             finally
             {
-                _connection.Close();
+                this._connection.Close();
             }
             return result;
         }
@@ -114,24 +114,24 @@
 
         private void OpenConnection()
         {
-            if (_connection.State != ConnectionState.Open)
+            if (this._connection.State != ConnectionState.Open)
             {
-                _connection.Open();
+                this._connection.Open();
             }
         }
 
         private T GetById(Guid id, Boolean closeConnection)
         {
             T result = null;
-            IDbCommand command = _commandProvider.SelectByIdCommand(_connection, null, id);
+            IDbCommand command = this._commandProvider.SelectByIdCommand(this._connection, null, id);
             try
             {
-                OpenConnection();
+                this.OpenConnection();
                 using (IDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        result = _dataMapper.Map(reader);
+                        result = this._dataMapper.Map(reader);
                     }
                 }
             }
@@ -139,7 +139,7 @@
             {
                 if (closeConnection)
                 {
-                    _connection.Close();
+                    this._connection.Close();
                 }
             }
             return result;

@@ -30,7 +30,7 @@
 
         public BaseRepositoryTests()
         {
-            _connection = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;
+            this._connection = new SqlConnection(@"Server=(localdb)\MSSQLLocalDB;
                                                      Initial Catalog=AdoUoWTestDb;
                                                      Integrated Security=true");
 
@@ -45,7 +45,7 @@
                             Id = Guid.Parse(reader["Id"].ToString()),
                             Name = reader["Name"].ToString()
                         });
-            _dataMapper = dataMapperStup.Object;
+            this._dataMapper = dataMapperStup.Object;
 
             var commandProviderStud = new Mock<IAdoDbCommandProvider<Foo>>();
             commandProviderStud.Setup(f => f.SelectByIdCommand(It.IsAny<IDbConnection>(), It.IsAny<IDbTransaction>(), It.IsAny<Guid>()))
@@ -54,7 +54,7 @@
                         {
                             IDbCommand command = new SqlCommand();
 
-                            command.Transaction = _transaction;
+                            command.Transaction = this._transaction;
                             command.Connection = connection;
                             command.CommandType = CommandType.Text;
                             command.CommandText = "SELECT * FROM [Foos] WHERE Id = @Id";
@@ -70,7 +70,7 @@
                         IDbCommand command = new SqlCommand();
 
                         command.Connection = connection;
-                        command.Transaction = _transaction;
+                        command.Transaction = this._transaction;
                         command.CommandType = CommandType.Text;
                         command.CommandText = "DELETE FROM [Foos] WHERE Id = @Id";
                         command.Parameters.Add(
@@ -85,7 +85,7 @@
                         IDbCommand command = new SqlCommand();
 
                         command.Connection = connection;
-                        command.Transaction = _transaction;
+                        command.Transaction = this._transaction;
                         command.CommandType = CommandType.Text;
                         command.CommandText = "INSERT INTO [Foos] VALUES(@Id,@Name)";
                         command.Parameters.Add(
@@ -102,7 +102,7 @@
                         IDbCommand command = new SqlCommand();
 
                         command.Connection = connection;
-                        command.Transaction = _transaction;
+                        command.Transaction = this._transaction;
                         command.CommandType = CommandType.Text;
                         command.CommandText = "UPDATE T SET T.Name = @Name FROM [Foos] T WHERE T.Id = @Id";
                         command.Parameters.Add(
@@ -119,22 +119,22 @@
                         IDbCommand command = new SqlCommand();
 
                         command.Connection = connection;
-                        command.Transaction = _transaction;
+                        command.Transaction = this._transaction;
                         command.CommandType = CommandType.Text;
                         command.CommandText = "SELECT * FROM [Foos]";
 
                         return command;
                     });
 
-            _commandProvider = commandProviderStud.Object;
+            this._commandProvider = commandProviderStud.Object;
 
             #endregion
 
-            var repository = new BaseRepository<Foo>(_connection, _commandProvider, _dataMapper);
-            _repositoryWriter = repository;
-            _repositoryReader = repository;
+            var repository = new BaseRepository<Foo>(this._connection, this._commandProvider, this._dataMapper);
+            this._repositoryWriter = repository;
+            this._repositoryReader = repository;
 
-            _connection.Open();
+            this._connection.Open();
         }
 
         #region Test CRUD
@@ -146,7 +146,7 @@
             Guid wrongId = Guid.NewGuid();
 
             //Act
-            var foo = _repositoryReader.GetById(wrongId);
+            var foo = this._repositoryReader.GetById(wrongId);
 
             //Assert
             Assert.Null(foo);
@@ -157,10 +157,10 @@
         {
             //Arrange
             var foo = new Foo { Id = Guid.NewGuid(), Name = "A" };
-            _repositoryWriter.Insert(foo);
+            this._repositoryWriter.Insert(foo);
 
             //Act
-            var fooDb = _repositoryReader.GetById(foo.Id);
+            var fooDb = this._repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.NotNull(fooDb);
@@ -175,10 +175,10 @@
             var foo = new Foo {Id = Guid.NewGuid(), Name = "B"};
 
             //Act
-            BeginTransaction();
-            _repositoryWriter.Insert(foo);
-            CommitTransaction();
-            var fooFromDb = _repositoryReader.GetById(foo.Id);
+            this.BeginTransaction();
+            this._repositoryWriter.Insert(foo);
+            this.CommitTransaction();
+            var fooFromDb = this._repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.NotNull(fooFromDb);
@@ -190,15 +190,15 @@
         public void InsertsRangeCorrectly()
         {
             //Arrange
-            BeginTransaction();
+            this.BeginTransaction();
             var foo1 = new Foo { Id = Guid.NewGuid(), Name = "A" };
             var foo2 = new Foo { Id = Guid.NewGuid(), Name = "B" };
 
             //Act
-            _repositoryWriter.InsertRange(new[] { foo1, foo2 });
-            CommitTransaction();
-            var foo1FromDb = _repositoryReader.GetById(foo1.Id);
-            var foo2FromDb = _repositoryReader.GetById(foo2.Id);
+            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            this.CommitTransaction();
+            var foo1FromDb = this._repositoryReader.GetById(foo1.Id);
+            var foo2FromDb = this._repositoryReader.GetById(foo2.Id);
 
             //Assert
             Assert.NotNull(foo1FromDb);
@@ -214,16 +214,16 @@
         public void DeletesRecordByIdCorrectly()
         {
             //Arrange
-            BeginTransaction();
+            this.BeginTransaction();
             var foo = new Foo { Id = Guid.NewGuid(), Name = "B" };
-            _repositoryWriter.Insert(foo);
-            CommitTransaction();
+            this._repositoryWriter.Insert(foo);
+            this.CommitTransaction();
 
             //Act
-            BeginTransaction();
-            _repositoryWriter.Delete(foo.Id);
-            CommitTransaction();
-            var fooFromDb = _repositoryReader.GetById(foo.Id);
+            this.BeginTransaction();
+            this._repositoryWriter.Delete(foo.Id);
+            this.CommitTransaction();
+            var fooFromDb = this._repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.Null(fooFromDb);
@@ -237,23 +237,23 @@
             //Act
 
             //Assert
-            Assert.Throws<ArgumentException>(() => _repositoryWriter.Delete(Guid.NewGuid()));
+            Assert.Throws<ArgumentException>(() => this._repositoryWriter.Delete(Guid.NewGuid()));
         }
 
         [Fact]
         public void DeletesRecordCorrectly()
         {
             //Arrange
-            BeginTransaction();
+            this.BeginTransaction();
             var foo = new Foo { Id = Guid.NewGuid(), Name = "B" };
-            _repositoryWriter.Insert(foo);
-            CommitTransaction();
+            this._repositoryWriter.Insert(foo);
+            this.CommitTransaction();
 
             //Act
-            BeginTransaction();
-            _repositoryWriter.Delete(foo);
-            CommitTransaction();
-            var fooFromDb = _repositoryReader.GetById(foo.Id);
+            this.BeginTransaction();
+            this._repositoryWriter.Delete(foo);
+            this.CommitTransaction();
+            var fooFromDb = this._repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.Null(fooFromDb);
@@ -263,17 +263,17 @@
         public void UpdatesRecordCorrectly()
         {
             //Arrange
-            BeginTransaction();
+            this.BeginTransaction();
             var foo = new Foo { Id = Guid.NewGuid(), Name = "B" };
-            _repositoryWriter.Insert(foo);
-            CommitTransaction();
+            this._repositoryWriter.Insert(foo);
+            this.CommitTransaction();
 
             //Act
             foo.Name = "A";
-            BeginTransaction();
-            _repositoryWriter.Update(foo);
-            CommitTransaction();
-            var fooFromDb = _repositoryReader.GetById(foo.Id);
+            this.BeginTransaction();
+            this._repositoryWriter.Update(foo);
+            this.CommitTransaction();
+            var fooFromDb = this._repositoryReader.GetById(foo.Id);
 
             //Assert
             Assert.Equal("A", fooFromDb.Name);
@@ -283,18 +283,18 @@
         public void GetsAllCorrectly()
         {
             //Arrange
-            BeginTransaction();
+            this.BeginTransaction();
             IDbCommand command = new SqlCommand("DELETE FROM [Foos]");
-            command.Connection = _connection;
-            command.Transaction = _transaction;
+            command.Connection = this._connection;
+            command.Transaction = this._transaction;
             command.ExecuteNonQuery();
             var foo1 = new Foo { Id = Guid.NewGuid(), Name = "A" };
             var foo2 = new Foo { Id = Guid.NewGuid(), Name = "B" };
-            _repositoryWriter.InsertRange(new[] { foo1, foo2 });
-            CommitTransaction();
+            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            this.CommitTransaction();
 
             //Act
-            var foos = _repositoryReader.GetAll().ToList();
+            var foos = this._repositoryReader.GetAll().ToList();
 
             //Assert
             Assert.Equal(2, foos.Count);
@@ -319,7 +319,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    _repositoryWriter.Insert(null);
+                    this._repositoryWriter.Insert(null);
                 });
         }
 
@@ -334,7 +334,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    _repositoryWriter.InsertRange(null);
+                    this._repositoryWriter.InsertRange(null);
                 });
         }
         
@@ -349,7 +349,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    _repositoryWriter.Update(null);
+                    this._repositoryWriter.Update(null);
                 });
         }
 
@@ -364,7 +364,7 @@
             Assert.Throws<ArgumentNullException>(
                 () =>
                 {
-                    _repositoryWriter.Delete(null);
+                    this._repositoryWriter.Delete(null);
                 });
         }
 
@@ -374,22 +374,22 @@
 
         private void BeginTransaction()
         {
-            _transaction = _connection.BeginTransaction();
+            this._transaction = this._connection.BeginTransaction();
         }
 
         private void CommitTransaction()
         {
-            _transaction?.Commit();
-            _transaction = null;
+            this._transaction?.Commit();
+            this._transaction = null;
         }
 
         #endregion Private Methods
 
         public void Dispose()
         {
-            if (_connection.State == ConnectionState.Open)
+            if (this._connection.State == ConnectionState.Open)
             {
-                _connection.Close();
+                this._connection.Close();
             }
         }
     }
