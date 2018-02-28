@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using BaseDataModel;
-using Repository.Contracts;
 
 namespace Repository
 {
@@ -13,7 +12,6 @@ namespace Repository
     ///     Generic asynchronous repository reader interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    [ContractClass(typeof(RepositoryReaderAsyncContract<>))]
     public interface IRepositoryReaderAsync<T> where T : class, IDataModel, new()
     {
         /// <summary>
