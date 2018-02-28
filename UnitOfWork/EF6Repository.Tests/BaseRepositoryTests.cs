@@ -32,7 +32,7 @@
 
         public BaseRepositoryTests()
         {
-            DbConnection connection = DbConnectionFactory.CreateTransient();
+            var connection = DbConnectionFactory.CreateTransient();
             this._context = new FooContext(connection);
 
             var repository = new BaseRepository<Foo>(new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified));

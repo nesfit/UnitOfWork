@@ -34,7 +34,7 @@
         public T Insert(T item)
         {
             T result = null;
-            IDbCommand command = this._commandProvider.InsertCommand(this._connection, null, item);
+            var command = this._commandProvider.InsertCommand(this._connection, null, item);
             
             command.ExecuteNonQuery();
             result = item;
@@ -54,7 +54,7 @@
 
         public void Update(T item)
         {
-            IDbCommand command = this._commandProvider.UpdateCommand(this._connection, null, item);
+            var command = this._commandProvider.UpdateCommand(this._connection, null, item);
 
             command.ExecuteNonQuery();
         }
@@ -62,7 +62,7 @@
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         public T Delete(Guid id)
         {
-            T item = this.GetById(id, false);
+            var item = this.GetById(id, false);
 
             if (item == null)
             {
@@ -75,7 +75,7 @@
         public T Delete(T item)
         {
             T result = null;
-            IDbCommand command = this._commandProvider.DeleteCommand(this._connection, null, item);
+            var command = this._commandProvider.DeleteCommand(this._connection, null, item);
 
             command.ExecuteNonQuery();
             result = item;
@@ -91,11 +91,11 @@
         public IEnumerable<T> GetAll()
         {
             IList<T> result = new List<T>();
-            IDbCommand command = this._commandProvider.SelectAllCommand(this._connection, null);
+            var command = this._commandProvider.SelectAllCommand(this._connection, null);
             try
             {
                 this.OpenConnection();
-                using (IDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -123,11 +123,11 @@
         private T GetById(Guid id, Boolean closeConnection)
         {
             T result = null;
-            IDbCommand command = this._commandProvider.SelectByIdCommand(this._connection, null, id);
+            var command = this._commandProvider.SelectByIdCommand(this._connection, null, id);
             try
             {
                 this.OpenConnection();
-                using (IDataReader reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {

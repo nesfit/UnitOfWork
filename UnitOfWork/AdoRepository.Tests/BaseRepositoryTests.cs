@@ -143,7 +143,7 @@
         public void GetsByIdReturnsNullWhenIdNotFound()
         {
             //Arrange
-            Guid wrongId = Guid.NewGuid();
+            var wrongId = Guid.NewGuid();
 
             //Act
             var foo = this._repositoryReader.GetById(wrongId);

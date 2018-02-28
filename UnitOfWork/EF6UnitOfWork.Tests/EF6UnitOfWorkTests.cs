@@ -28,7 +28,7 @@
 
         public EF6UnitOfWorkTests()
         {
-            DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
+            var connection = Effort.DbConnectionFactory.CreateTransient();
             this._context = new FooContext(connection);
 
             this._unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
@@ -128,7 +128,7 @@
         public void DisposeWorksCorrectly()
         {
             //Arrange
-            DbConnection connection = Effort.DbConnectionFactory.CreateTransient();
+            var connection = Effort.DbConnectionFactory.CreateTransient();
             var context = new FooContext(connection);
             var unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
             var repository = new BaseRepository<Foo>(unitOfWork);
