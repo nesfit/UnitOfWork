@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseDataModel;
@@ -13,7 +12,6 @@ using UnitOfWork;
 
 namespace EF6Repository
 {
-    using static Contract;
 
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>,
@@ -25,9 +23,11 @@ namespace EF6Repository
 
         public BaseRepository(IUnitOfWork unitOfWork)
         {
-            Requires<ArgumentException>(
-                unitOfWork is Ef6UnitOfWork,
-                "IUnitOfWork is not implemented by Ef6UnitOfWork class");
+            if (unitOfWork == null)
+                throw new ArgumentException("IUnitOfWork cannot be null");
+            if (!(unitOfWork is Ef6UnitOfWork))
+                throw new ArgumentException("IUnitOfWork is not implemented by Ef6UnitOfWork class");
+
 
             this._context = ((Ef6UnitOfWork) unitOfWork).DbContext;
             this._dbSet = this._context.Set<T>();
@@ -66,18 +66,27 @@ namespace EF6Repository
 
         public virtual T Delete(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Deleted;
             return item;
         }
 
         public virtual T Insert(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Added;
             return item;
         }
 
         public virtual IEnumerable<T> InsertRange(IEnumerable<T> items)
         {
+            if (items == null)
+                throw new ArgumentNullException(nameof(items), "T item cannot be null.");
+
             var insertRange = items as T[] ?? items.ToArray();
             foreach (var item in insertRange) this.Insert(item);
             return insertRange;
@@ -85,6 +94,9 @@ namespace EF6Repository
 
         public virtual void Update(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Modified;
         }
 
@@ -100,18 +112,27 @@ namespace EF6Repository
 
         public virtual Task<T> DeleteAsync(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Deleted;
             return Task.FromResult(item);
         }
 
         public virtual Task<T> InsertAsync(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Added;
             return Task.FromResult(item);
         }
 
         public virtual async Task<IEnumerable<T>> InsertRangeAsync(IEnumerable<T> items)
         {
+            if (items == null)
+                throw new ArgumentNullException(nameof(items), "T item cannot be null.");
+
             var insertRange = items as T[] ?? items.ToArray();
             foreach (var item in insertRange) await this.InsertAsync(item);
             return insertRange;
@@ -119,6 +140,9 @@ namespace EF6Repository
 
         public virtual Task UpdateAsync(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             this._context.Entry(item).State = EntityState.Modified;
             return Task.CompletedTask;
         }

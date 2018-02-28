@@ -66,6 +66,9 @@ namespace AdoRepository
 
         public T Delete(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item),"T item cannot be null.");
+
             T result = null;
             var command = this._commandProvider.DeleteCommand(this._connection, null, item);
 
@@ -77,6 +80,9 @@ namespace AdoRepository
 
         public T Insert(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             T result = null;
             var command = this._commandProvider.InsertCommand(this._connection, null, item);
 
@@ -88,6 +94,9 @@ namespace AdoRepository
 
         public IEnumerable<T> InsertRange(IEnumerable<T> items)
         {
+            if (items == null)
+                throw new ArgumentNullException(nameof(items), "T item cannot be null.");
+
             var insertRange = items as T[] ?? items.ToArray();
             foreach (var item in insertRange) this.Insert(item);
             return insertRange;
@@ -95,6 +104,9 @@ namespace AdoRepository
 
         public void Update(T item)
         {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
+
             var command = this._commandProvider.UpdateCommand(this._connection, null, item);
 
             command.ExecuteNonQuery();
