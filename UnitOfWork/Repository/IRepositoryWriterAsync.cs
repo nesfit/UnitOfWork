@@ -1,3 +1,5 @@
+// pluskal
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -16,6 +18,7 @@ namespace Repository
     {
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         Task<T> DeleteAsync(Guid id);
+
         Task<T> DeleteAsync(T item);
         Task<T> InsertAsync(T item);
         Task<IEnumerable<T>> InsertRangeAsync(IEnumerable<T> items);
