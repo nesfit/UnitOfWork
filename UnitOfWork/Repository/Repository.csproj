@@ -80,11 +80,6 @@
     <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CodeContracts.MSBuild" Version="1.12.0">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
