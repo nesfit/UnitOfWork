@@ -24,16 +24,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <Import Project="..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.props" Condition="Exists('..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.props')" />
   <Import Project="..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props')" />
-  <Import Project="..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.targets" Condition="Exists('..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props'))" />
-    <Error Condition="!Exists('..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.props'))" />
-    <Error Condition="!Exists('..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CodeContracts.MSBuild.1.12.0\build\CodeContracts.MSBuild.targets'))" />
   </Target>
   <ItemGroup>
     <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
