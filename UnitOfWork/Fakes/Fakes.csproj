@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFrameworks>net46;netstandard2.0;</TargetFrameworks>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
@@ -28,6 +28,7 @@
     <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="3.4.1" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="NMemory" Version="1.1.2" />
   </ItemGroup>
