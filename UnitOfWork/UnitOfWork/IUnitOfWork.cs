@@ -1,5 +1,6 @@
 ﻿// pluskal
 
+using System;
 using System.Threading.Tasks;
 
 namespace UnitOfWork
@@ -7,7 +8,7 @@ namespace UnitOfWork
     /// <summary>
     ///     Unit Of Work interface
     /// </summary>
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         /// <summary>
         ///     Begins transaction
