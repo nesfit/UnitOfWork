@@ -71,7 +71,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraRepository.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraUnitOfWork.Tests", "CassandraUnitOfWork.Tests\CassandraUnitOfWork.Tests.csproj", "{1D8452DF-5AA0-45A4-AFE4-8C39B6771325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CassandraRepository.Benchmark", "CassandraRepository.Benchmark\CassandraRepository.Benchmark.csproj", "{78B8616D-6C11-46DA-9DF5-6192F04525E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CassandraRepository.Benchmarks", "CassandraRepository.Benchmarks\CassandraRepository.Benchmarks.csproj", "{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,10 +147,10 @@ Global
 		{1D8452DF-5AA0-45A4-AFE4-8C39B6771325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D8452DF-5AA0-45A4-AFE4-8C39B6771325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D8452DF-5AA0-45A4-AFE4-8C39B6771325}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78B8616D-6C11-46DA-9DF5-6192F04525E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78B8616D-6C11-46DA-9DF5-6192F04525E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78B8616D-6C11-46DA-9DF5-6192F04525E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78B8616D-6C11-46DA-9DF5-6192F04525E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,7 +183,7 @@ Global
 		{17473E36-AAC7-4A7D-A11F-423543D33BA9} = {FF565E1A-C8B0-4AE2-A092-79E104E80430}
 		{134BD782-ED63-467C-8474-807CE47599FC} = {17473E36-AAC7-4A7D-A11F-423543D33BA9}
 		{1D8452DF-5AA0-45A4-AFE4-8C39B6771325} = {17473E36-AAC7-4A7D-A11F-423543D33BA9}
-		{78B8616D-6C11-46DA-9DF5-6192F04525E5} = {17473E36-AAC7-4A7D-A11F-423543D33BA9}
+		{7401DE0C-5E89-4412-B1D0-39F4E8C2EFB0} = {17473E36-AAC7-4A7D-A11F-423543D33BA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A1DCF0-0CD2-401E-A9E6-49141784FEEF}
