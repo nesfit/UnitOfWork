@@ -60,6 +60,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cassandra", "Cassandra", "{4007054E-8903-4E50-AC48-21922EAAE83F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose-cassandra-cluster.yml = docker-compose-cassandra-cluster.yml
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraRepository", "CassandraRepository\CassandraRepository.csproj", "{F0E5A1DB-9A76-48F5-856E-ADBC01304C13}"
 EndProject
@@ -75,15 +78,30 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraRepository.Benchma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InMemory", "InMemory", "{0FD99DC3-2C47-4DAA-8A31-6505FFB3E9DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepository", "InMemoryRepository\InMemoryRepository.csproj", "{860F9144-3AF0-4123-BD21-2C4B50AE9EFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InMemoryRepository", "InMemoryRepository\InMemoryRepository.csproj", "{860F9144-3AF0-4123-BD21-2C4B50AE9EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryUnitOfWork", "InMemoryUnitOfWork\InMemoryUnitOfWork.csproj", "{40BDDBD1-B404-4FB3-B325-AC308FA74A5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InMemoryUnitOfWork", "InMemoryUnitOfWork\InMemoryUnitOfWork.csproj", "{40BDDBD1-B404-4FB3-B325-AC308FA74A5E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InMemory", "InMemory", "{57DED92C-A34B-4146-B6EE-BB90586736E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepository.Tests", "InMemoryRepository.Tests\InMemoryRepository.Tests.csproj", "{66D039FF-1855-472B-A424-B5A7757D6B5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InMemoryRepository.Tests", "InMemoryRepository.Tests\InMemoryRepository.Tests.csproj", "{66D039FF-1855-472B-A424-B5A7757D6B5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryUnitOfWork.Tests", "InMemoryUnitOfWork.Tests\InMemoryUnitOfWork.Tests.csproj", "{AD58742B-A195-41B8-8426-F88738C0D6C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InMemoryUnitOfWork.Tests", "InMemoryUnitOfWork.Tests\InMemoryUnitOfWork.Tests.csproj", "{AD58742B-A195-41B8-8426-F88738C0D6C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArangoDB", "ArangoDB", "{1A8C7D17-DF5C-44CA-AB06-5DD45F6AE635}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose-arangodb-cluster.yml = docker-compose-arangodb-cluster.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBRepository", "ArangoDBRepository\ArangoDBRepository.csproj", "{47B182C8-15D6-4049-9C44-6E3C17054089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBUnitOfWork", "ArangoDBUnitOfWork\ArangoDBUnitOfWork.csproj", "{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArangoDB", "ArangoDB", "{E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBRepository.Tests", "ArangoDBRepository.Tests\ArangoDBRepository.Tests.csproj", "{21B8AA5B-8551-44B3-A8AF-E77457D87E53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBUnitOfWork.Tests", "ArangoDBUnitOfWork.Tests\ArangoDBUnitOfWork.Tests.csproj", "{298970AF-CD83-4028-A645-7A4A9F378C8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -179,6 +197,22 @@ Global
 		{AD58742B-A195-41B8-8426-F88738C0D6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD58742B-A195-41B8-8426-F88738C0D6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD58742B-A195-41B8-8426-F88738C0D6C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47B182C8-15D6-4049-9C44-6E3C17054089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47B182C8-15D6-4049-9C44-6E3C17054089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47B182C8-15D6-4049-9C44-6E3C17054089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47B182C8-15D6-4049-9C44-6E3C17054089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B8AA5B-8551-44B3-A8AF-E77457D87E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B8AA5B-8551-44B3-A8AF-E77457D87E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B8AA5B-8551-44B3-A8AF-E77457D87E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B8AA5B-8551-44B3-A8AF-E77457D87E53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,6 +252,12 @@ Global
 		{57DED92C-A34B-4146-B6EE-BB90586736E7} = {FF565E1A-C8B0-4AE2-A092-79E104E80430}
 		{66D039FF-1855-472B-A424-B5A7757D6B5E} = {57DED92C-A34B-4146-B6EE-BB90586736E7}
 		{AD58742B-A195-41B8-8426-F88738C0D6C4} = {57DED92C-A34B-4146-B6EE-BB90586736E7}
+		{1A8C7D17-DF5C-44CA-AB06-5DD45F6AE635} = {4E64521E-0CFD-4A56-AA6B-EE0463C87F51}
+		{47B182C8-15D6-4049-9C44-6E3C17054089} = {1A8C7D17-DF5C-44CA-AB06-5DD45F6AE635}
+		{F2DAE57D-6A6C-4270-89C8-618CBF5E5097} = {1A8C7D17-DF5C-44CA-AB06-5DD45F6AE635}
+		{E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B} = {FF565E1A-C8B0-4AE2-A092-79E104E80430}
+		{21B8AA5B-8551-44B3-A8AF-E77457D87E53} = {E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}
+		{298970AF-CD83-4028-A645-7A4A9F378C8A} = {E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A1DCF0-0CD2-401E-A9E6-49141784FEEF}
