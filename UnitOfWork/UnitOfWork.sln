@@ -54,7 +54,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0C8310D-1341-427E-94A3-788816EAA78B}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
-		..\docker-compose.yml = ..\docker-compose.yml
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
 	EndProjectSection
@@ -93,15 +92,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArangoDB", "ArangoDB", "{1A
 		docker-compose-arangodb-cluster.yml = docker-compose-arangodb-cluster.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBRepository", "ArangoDBRepository\ArangoDBRepository.csproj", "{47B182C8-15D6-4049-9C44-6E3C17054089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBRepository", "ArangoDBRepository\ArangoDBRepository.csproj", "{47B182C8-15D6-4049-9C44-6E3C17054089}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBUnitOfWork", "ArangoDBUnitOfWork\ArangoDBUnitOfWork.csproj", "{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBUnitOfWork", "ArangoDBUnitOfWork\ArangoDBUnitOfWork.csproj", "{F2DAE57D-6A6C-4270-89C8-618CBF5E5097}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArangoDB", "ArangoDB", "{E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBRepository.Tests", "ArangoDBRepository.Tests\ArangoDBRepository.Tests.csproj", "{21B8AA5B-8551-44B3-A8AF-E77457D87E53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBRepository.Tests", "ArangoDBRepository.Tests\ArangoDBRepository.Tests.csproj", "{21B8AA5B-8551-44B3-A8AF-E77457D87E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArangoDBUnitOfWork.Tests", "ArangoDBUnitOfWork.Tests\ArangoDBUnitOfWork.Tests.csproj", "{298970AF-CD83-4028-A645-7A4A9F378C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBUnitOfWork.Tests", "ArangoDBUnitOfWork.Tests\ArangoDBUnitOfWork.Tests.csproj", "{298970AF-CD83-4028-A645-7A4A9F378C8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
