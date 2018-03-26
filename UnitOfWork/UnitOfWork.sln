@@ -60,6 +60,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cassandra", "Cassandra", "{4007054E-8903-4E50-AC48-21922EAAE83F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose-cassandra-cluster.yml = docker-compose-cassandra-cluster.yml
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CassandraRepository", "CassandraRepository\CassandraRepository.csproj", "{F0E5A1DB-9A76-48F5-856E-ADBC01304C13}"
 EndProject
