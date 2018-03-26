@@ -11,7 +11,7 @@ using Fakes;
 
 namespace CassandraRepository.Benchmarks
 {
-    [SimpleJob(RunStrategy.Throughput, 1, 2, 10, id: "FastJob")]
+    [SimpleJob(RunStrategy.Throughput, 1, 1, 2, id: "FastJob")]
     public class CassandraRepositoryBenchrmark
     {
         private Foo[] _bigItems;
@@ -19,7 +19,7 @@ namespace CassandraRepository.Benchmarks
         private Foo[] _smallItems;
         private CassandraUnitOfWork.CassandraUnitOfWork _unitOfWork;
 
-        [Params(100, 1000, 10_000 /*, 100_000*/)]
+        [Params(/*100, */1000/*, 10_000 *//*, 100_000*/)]
         public Int32 ItemsCount { get; set; }
 
         public Int32 Mtu { get; set; } = 1500;
