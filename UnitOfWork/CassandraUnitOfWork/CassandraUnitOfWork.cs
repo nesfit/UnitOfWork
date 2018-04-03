@@ -18,24 +18,8 @@ namespace CassandraUnitOfWork
 
         public ISession Session { get; }
 
-        public void BeginTransaction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Commit()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Rollback()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveChanges()
         {
-
         }
 
         public Task SaveChangesAsync()

@@ -11,21 +11,6 @@ namespace UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         /// <summary>
-        ///     Begins transaction
-        /// </summary>
-        void BeginTransaction();
-
-        /// <summary>
-        ///     Commits transaction
-        /// </summary>
-        void Commit();
-
-        /// <summary>
-        ///     Rollback transaction
-        /// </summary>
-        void Rollback();
-
-        /// <summary>
         ///     Saves changes into the persistence storage
         /// </summary>
         void SaveChanges();
