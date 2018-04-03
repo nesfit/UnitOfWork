@@ -19,7 +19,7 @@ namespace EF6UnitOfWork.Tests
         private readonly DbContext _context;
         private readonly IRepositoryReader<Foo> _repositoryReader;
         private readonly IRepositoryWriter<Foo> _repositoryWriter;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ITransactionalUnitOfWork _unitOfWork;
 
         public EF6UnitOfWorkTests()
         {

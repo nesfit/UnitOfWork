@@ -13,7 +13,7 @@ namespace EF6UnitOfWork
     /// <summary>
     ///     Entity Framework IUnitOfWork Implementations
     /// </summary>
-    public class Ef6UnitOfWork : IUnitOfWork, IDisposable
+    public class Ef6UnitOfWork : ITransactionalUnitOfWork, IDisposable
     {
         private readonly IsolationLevel _isolationLevel;
         private DbContextTransaction _transaction;

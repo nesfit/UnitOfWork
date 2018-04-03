@@ -34,12 +34,10 @@ namespace CassandraUnitOfWork.Tests
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            this._unitOfWork.BeginTransaction();
             this._repositoryWriter.Insert(foo1);
             this._unitOfWork.SaveChanges();
             this._repositoryWriter.Insert(foo2);
             this._unitOfWork.SaveChanges();
-            this._unitOfWork.Commit();
 
             //Assert
             var all = this._repositoryReader.GetAll();
@@ -73,12 +71,10 @@ namespace CassandraUnitOfWork.Tests
             var foo2 = new Foo { Id = Guid.NewGuid() };
 
             //Act
-            this._unitOfWork.BeginTransaction();
             this._repositoryWriter.Insert(foo1);
             this._unitOfWork.SaveChanges();
             this._repositoryWriter.Insert(foo2);
             this._unitOfWork.SaveChanges();
-            this._unitOfWork.Rollback();
 
             //Assert
             var all = this._repositoryReader.GetAll().ToArray();

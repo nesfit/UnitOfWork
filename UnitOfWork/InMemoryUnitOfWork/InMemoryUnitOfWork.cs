@@ -12,21 +12,6 @@ namespace InMemoryUnitOfWork
         {
         }
 
-        public void BeginTransaction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Commit()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Rollback()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SaveChanges()
         {
         }
