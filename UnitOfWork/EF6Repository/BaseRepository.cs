@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataModel;
+using BaseDataEntity;
 using EF6UnitOfWork;
 using Repository;
 using UnitOfWork;
@@ -16,7 +16,7 @@ namespace EF6Repository
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>,
         IRepositoryWriterAsync<T>, IRepositoryReaderAsync<T>
-        where T : class, IDataModel, new()
+        where T : class, IDataEntity, new()
     {
         private readonly DbContext _context;
         private readonly IDbSet<T> _dbSet;

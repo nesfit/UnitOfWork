@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace Repository
 {
     // <summary>
     /// Generic writer repository interface
     /// </summary>
-    /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryWriterAsync<T> where T : class, IDataModel, new()
+    /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
+    public interface IRepositoryWriterAsync<T> where T : class, IDataEntity, new()
     {
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         Task<T> DeleteAsync(Guid id);

@@ -1,11 +1,11 @@
 ﻿// pluskal
 
 using System;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace Fakes
 {
-    public class Foo : IDataModel
+    public class Foo : IDataEntity
     {
         public String Name { get; set; }
         public Guid Id { get; set; }

@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />
     <ProjectReference Include="..\InMemoryRepository\InMemoryRepository.csproj" />
     <ProjectReference Include="..\InMemoryUnitOfWork\InMemoryUnitOfWork.csproj" />

@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace Repository
 {
     /// <summary>
     ///     Generic asynchronous repository reader interface
     /// </summary>
-    /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryReaderAsync<T> where T : class, IDataModel, new()
+    /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
+    public interface IRepositoryReaderAsync<T> where T : class, IDataEntity, new()
     {
         /// <summary>
         ///     Gets all items in persistence storage asyncronously

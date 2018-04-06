@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataModel;
+using BaseDataEntity;
 using Cassandra;
 using Cassandra.Data.Linq;
 using Repository;
@@ -11,7 +11,7 @@ using UnitOfWork;
 namespace CassandraRepository
 {
     public class BaseRepository<TEntity> : IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>,
-    IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataModel, new()
+    IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
     {
         protected readonly ISession Session;
 

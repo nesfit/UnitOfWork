@@ -1,11 +1,11 @@
 ﻿// pluskal
 
 using System.Data;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace AdoDataMapperAbstract
 {
-    public interface IAdoDataMapper<T> where T : class, IDataModel, new()
+    public interface IAdoDataMapper<T> where T : class, IDataEntity, new()
     {
         T Map(IDataReader reader);
     }

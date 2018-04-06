@@ -70,7 +70,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AdoDataMapperAbstract\AdoDataMapperAbstract.csproj" />
     <ProjectReference Include="..\AdoDbCommandProviderAbstract\AdoDbCommandProviderAbstract.csproj" />
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
   <ItemGroup>
