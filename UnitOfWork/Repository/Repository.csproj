@@ -67,8 +67,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
- <ItemGroup>
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
+  <ItemGroup>
+    <ProjectReference Include="..\BaseDataEntity\BaseDataEntity.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />

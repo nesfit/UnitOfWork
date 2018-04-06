@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implemen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{39E436D1-3839-4CF7-BFAF-C0D2F2788024}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseDataModel", "BaseDataModel\BaseDataModel.csproj", "{EE6A9F9F-4A47-4E0B-8926-66935E7DB6F1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWork", "UnitOfWork\UnitOfWork.csproj", "{56987BCA-26EC-4DC9-93A5-B865734DCDEF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity Framework 6", "Entity Framework 6", "{0DAC5888-9ECC-41B5-8BE7-9395D64D22C8}"
@@ -102,6 +100,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBRepository.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArangoDBUnitOfWork.Tests", "ArangoDBUnitOfWork.Tests\ArangoDBUnitOfWork.Tests.csproj", "{298970AF-CD83-4028-A645-7A4A9F378C8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseDataEntity", "BaseDataEntity\BaseDataEntity.csproj", "{6FBE0F1F-F09E-447C-8070-4B4EFF82A391}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,10 +112,6 @@ Global
 		{39E436D1-3839-4CF7-BFAF-C0D2F2788024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E436D1-3839-4CF7-BFAF-C0D2F2788024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E436D1-3839-4CF7-BFAF-C0D2F2788024}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE6A9F9F-4A47-4E0B-8926-66935E7DB6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE6A9F9F-4A47-4E0B-8926-66935E7DB6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE6A9F9F-4A47-4E0B-8926-66935E7DB6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE6A9F9F-4A47-4E0B-8926-66935E7DB6F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56987BCA-26EC-4DC9-93A5-B865734DCDEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56987BCA-26EC-4DC9-93A5-B865734DCDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56987BCA-26EC-4DC9-93A5-B865734DCDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -212,6 +208,10 @@ Global
 		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{298970AF-CD83-4028-A645-7A4A9F378C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FBE0F1F-F09E-447C-8070-4B4EFF82A391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FBE0F1F-F09E-447C-8070-4B4EFF82A391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FBE0F1F-F09E-447C-8070-4B4EFF82A391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FBE0F1F-F09E-447C-8070-4B4EFF82A391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +257,7 @@ Global
 		{E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B} = {FF565E1A-C8B0-4AE2-A092-79E104E80430}
 		{21B8AA5B-8551-44B3-A8AF-E77457D87E53} = {E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}
 		{298970AF-CD83-4028-A645-7A4A9F378C8A} = {E73C0AAF-2A9E-45B6-9B4F-5BF5016C5B8B}
+		{6FBE0F1F-F09E-447C-8070-4B4EFF82A391} = {2DBA28C4-E688-4E42-8834-D65DCF741F04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2A1DCF0-0CD2-401E-A9E6-49141784FEEF}

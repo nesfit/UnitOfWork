@@ -25,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
+    <ProjectReference Include="..\BaseDataEntity\BaseDataEntity.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />

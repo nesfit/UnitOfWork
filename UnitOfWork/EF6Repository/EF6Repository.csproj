@@ -68,7 +68,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
     <ProjectReference Include="..\EF6UnitOfWork\EF6UnitOfWork.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />

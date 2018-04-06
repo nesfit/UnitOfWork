@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArangoDB.Client;
-using BaseDataModel;
+using BaseDataEntity;
 using Repository;
 using UnitOfWork;
 
 namespace ArangoDBRepository
 {
     public class BaseRepository<TEntity> : IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>,
-        IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataModel, new()
+        IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
     {
         public BaseRepository(IUnitOfWork unitOfWork)
         {

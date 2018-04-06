@@ -79,7 +79,6 @@
     <ProjectReference Include="..\AdoDbCommandProviderAbstract\AdoDbCommandProviderAbstract.csproj" />
     <ProjectReference Include="..\AdoRepository\AdoRepository.csproj" />
     <ProjectReference Include="..\AdoTableNameProviderAbstract\AdoTableNameProviderAbstract.csproj" />
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>

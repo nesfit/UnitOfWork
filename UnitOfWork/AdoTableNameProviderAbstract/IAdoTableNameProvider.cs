@@ -1,12 +1,12 @@
 ﻿// pluskal
 
 using System;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace AdoTableNameProviderAbstract
 {
     public interface IAdoTableNameProvider
     {
-        String GetTableName<T>() where T : class, IDataModel, new();
+        String GetTableName<T>() where T : class, IDataEntity, new();
     }
 }

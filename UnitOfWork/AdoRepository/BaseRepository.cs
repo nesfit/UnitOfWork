@@ -6,14 +6,14 @@ using System.Data;
 using System.Linq;
 using AdoDataMapperAbstract;
 using AdoDbCommandProviderAbstract;
-using BaseDataModel;
+using BaseDataEntity;
 using Repository;
 
 namespace AdoRepository
 {
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>
-        where T : class, IDataModel, new()
+        where T : class, IDataEntity, new()
     {
         private readonly IAdoDbCommandProvider<T> _commandProvider;
         private readonly IDbConnection _connection;

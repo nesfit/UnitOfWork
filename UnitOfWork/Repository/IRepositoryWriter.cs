@@ -3,15 +3,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using BaseDataModel;
+using BaseDataEntity;
 
 namespace Repository
 {
     /// <summary>
     ///     Generic writer repository interface
     /// </summary>
-    /// <typeparam name="T">Type must be a class and inherited from IDataModel interface</typeparam>
-    public interface IRepositoryWriter<T> where T : class, IDataModel, new()
+    /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
+    public interface IRepositoryWriter<T> where T : class, IDataEntity, new()
     {
         /// <summary>
         ///     Deletes item

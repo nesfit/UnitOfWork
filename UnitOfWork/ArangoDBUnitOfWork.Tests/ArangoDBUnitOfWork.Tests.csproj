@@ -18,7 +18,6 @@
     <ProjectReference Include="..\ArangoDBRepository.Tests\ArangoDBRepository.Tests.csproj" />
     <ProjectReference Include="..\ArangoDBRepository\ArangoDBRepository.csproj" />
     <ProjectReference Include="..\ArangoDBUnitOfWork\ArangoDBUnitOfWork.csproj" />
-    <ProjectReference Include="..\BaseDataModel\BaseDataModel.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
