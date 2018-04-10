@@ -76,11 +76,6 @@
     <PackageReference Include="EntityFramework" Version="6.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
 </Project>

@@ -24,11 +24,4 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Repository\Repository.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 </Project>
