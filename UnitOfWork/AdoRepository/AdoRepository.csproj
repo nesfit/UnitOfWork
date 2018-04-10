@@ -72,8 +72,4 @@
     <ProjectReference Include="..\AdoDbCommandProviderAbstract\AdoDbCommandProviderAbstract.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 </Project>

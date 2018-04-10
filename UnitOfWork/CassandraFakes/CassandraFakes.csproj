@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitOfWork\UnitOfWork.csproj" />
+    <ProjectReference Include="..\Fakes\Fakes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cassandra">
+      <HintPath>..\..\..\..\..\.nuget\packages\cassandracsharpdriver\3.4.1\lib\netstandard1.5\Cassandra.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -70,8 +70,4 @@
   <ItemGroup>
     <ProjectReference Include="..\BaseDataEntity\BaseDataEntity.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
 </Project>

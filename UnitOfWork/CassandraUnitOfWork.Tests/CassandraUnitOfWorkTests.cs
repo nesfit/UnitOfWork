@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra;
+using CassandraFakes;
 using CassandraRepository;
 using Fakes;
 using Repository;

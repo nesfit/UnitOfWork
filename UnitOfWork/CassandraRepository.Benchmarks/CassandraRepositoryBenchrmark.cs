@@ -6,6 +6,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Jobs;
 using BenchmarkDotNet.Engines;
 using Cassandra;
+using CassandraFakes;
 using CassandraRepository.Tests;
 using Fakes;
 

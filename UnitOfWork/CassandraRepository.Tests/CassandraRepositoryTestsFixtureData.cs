@@ -1,4 +1,5 @@
 using Cassandra;
+using CassandraFakes;
 using Fakes;
 
 namespace CassandraRepository.Tests
