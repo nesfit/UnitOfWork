@@ -10,7 +10,7 @@ using UnitOfWork;
 
 namespace CassandraRepository
 {
-    public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class, IDataEntity, new()
+    public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
     {
         protected readonly ISession Session;
 
