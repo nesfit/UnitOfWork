@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CassandraCSharpDriver" Version="3.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Cassandra">
+      <HintPath>..\..\..\..\..\.nuget\packages\cassandracsharpdriver\3.4.1\lib\netstandard1.5\Cassandra.dll</HintPath>
+    </Reference>
+    <Reference Include="Fakes">
+      <HintPath>..\Fakes\bin\Release\netstandard2.0\Fakes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -32,6 +32,7 @@
     <Error Condition="!Exists('..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.core.props'))" />
   </Target>
   <ItemGroup>
+    <ProjectReference Include="..\EF6Fakes\EF6Fakes.csproj" />
     <ProjectReference Include="..\EF6Repository\EF6Repository.csproj" />
     <ProjectReference Include="..\EF6UnitOfWork\EF6UnitOfWork.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />

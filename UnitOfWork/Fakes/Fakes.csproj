@@ -25,11 +25,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CassandraCSharpDriver" Version="3.4.1" />
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="NMemory" Version="1.1.2" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Data.DataSetExtensions" />

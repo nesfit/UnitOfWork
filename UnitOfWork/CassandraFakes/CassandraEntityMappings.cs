@@ -1,6 +1,7 @@
 ﻿using Cassandra.Mapping;
+using Fakes;
 
-namespace Fakes
+namespace CassandraFakes
 {
     public class CassandraEntityMappings : Mappings
     {
