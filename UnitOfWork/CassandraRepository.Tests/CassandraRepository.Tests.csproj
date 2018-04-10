@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="CassandraCSharpDriver" Version="3.4.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0" />
     <PackageReference Include="Moq" Version="4.8.2" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CassandraFakes\CassandraFakes.csproj" />
     <ProjectReference Include="..\CassandraRepository\CassandraRepository.csproj" />
     <ProjectReference Include="..\CassandraUnitOfWork\CassandraUnitOfWork.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />

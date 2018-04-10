@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CassandraUnitOfWork\CassandraUnitOfWork.csproj" />
     <ProjectReference Include="..\Fakes\Fakes.csproj" />
     <ProjectReference Include="..\InMemoryRepository\InMemoryRepository.csproj" />
     <ProjectReference Include="..\InMemoryUnitOfWork\InMemoryUnitOfWork.csproj" />

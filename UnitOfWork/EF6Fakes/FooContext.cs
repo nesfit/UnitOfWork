@@ -2,8 +2,9 @@
 
 using System.Data.Common;
 using System.Data.Entity;
+using Fakes;
 
-namespace Fakes
+namespace EF6Fakes
 {
     public class FooContext : DbContext
     {

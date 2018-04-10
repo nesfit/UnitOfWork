@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Effort;
+using EF6Fakes;
 using EF6Repository;
 using Fakes;
 using Repository;
