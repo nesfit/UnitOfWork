@@ -1,10 +1,8 @@
-﻿// pluskal
-
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.Entity;
-using Fakes;
+using UnitOfWork.Fakes;
 
-namespace EF6Fakes
+namespace UnitOfWork.EF6Fakes
 {
     public class FooContext : DbContext
     {

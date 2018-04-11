@@ -1,16 +1,14 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Jobs;
 using BenchmarkDotNet.Engines;
 using Cassandra;
-using CassandraFakes;
-using CassandraRepository.Tests;
-using Fakes;
+using UnitOfWork.CassandraFakes;
+using UnitOfWork.CassandraRepository.Tests;
+using UnitOfWork.Fakes;
 
-namespace CassandraRepository.Benchmarks
+namespace UnitOfWork.CassandraRepository.Benchmarks
 {
     [SimpleJob(RunStrategy.Throughput, 1, 1, 2, id: "FastJob")]
     public class CassandraRepositoryBenchrmark
@@ -20,7 +18,7 @@ namespace CassandraRepository.Benchmarks
         private Foo[] _smallItems;
         private CassandraUnitOfWork.CassandraUnitOfWork _unitOfWork;
 
-        [Params(/*100, */1000/*, 10_000 *//*, 100_000*/)]
+        [Params( /*100, */1000 /*, 10_000 */ /*, 100_000*/)]
         public Int32 ItemsCount { get; set; }
 
         public Int32 Mtu { get; set; } = 1500;

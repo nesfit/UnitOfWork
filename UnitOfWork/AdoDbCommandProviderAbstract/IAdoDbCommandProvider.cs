@@ -1,10 +1,8 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Data;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace AdoDbCommandProviderAbstract
+namespace UnitOfWork.AdoDbCommandProviderAbstract
 {
     public interface IAdoDbCommandProvider<T> where T : class, IDataEntity, new()
     {

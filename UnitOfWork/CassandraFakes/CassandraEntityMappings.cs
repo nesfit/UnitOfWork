@@ -1,7 +1,7 @@
 ﻿using Cassandra.Mapping;
-using Fakes;
+using UnitOfWork.Fakes;
 
-namespace CassandraFakes
+namespace UnitOfWork.CassandraFakes
 {
     public class CassandraEntityMappings : Mappings
     {

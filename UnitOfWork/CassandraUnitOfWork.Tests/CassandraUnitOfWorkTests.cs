@@ -2,14 +2,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra;
-using CassandraFakes;
-using CassandraRepository;
-using Fakes;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.CassandraFakes;
+using UnitOfWork.CassandraRepository;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace CassandraUnitOfWork.Tests
+namespace UnitOfWork.CassandraUnitOfWork.Tests
 {
     public class CassandraUnitOfWorkTests : IClassFixture<CassandraUnitOfWorkTestsFixtureData>
     {
@@ -31,8 +30,8 @@ namespace CassandraUnitOfWork.Tests
         {
             //Arrange
             var initialCount = this._repositoryReader.GetAll().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo1);
@@ -56,7 +55,7 @@ namespace CassandraUnitOfWork.Tests
             var repository = new BaseRepository<Foo>(this._unitOfWork);
 
             //Act
-            repository.Insert(new Foo { Id = Guid.NewGuid() });
+            repository.Insert(new Foo {Id = Guid.NewGuid()});
             unitOfWork.SaveChanges();
             unitOfWork.Dispose();
 
@@ -68,8 +67,8 @@ namespace CassandraUnitOfWork.Tests
         {
             //Arrange
             var initialCount = this._repositoryReader.GetAll().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo1);
@@ -89,8 +88,8 @@ namespace CassandraUnitOfWork.Tests
         {
             //Arrange
             var initialCount = this._repositoryReader.GetAll().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo1);
@@ -109,8 +108,8 @@ namespace CassandraUnitOfWork.Tests
         {
             //Arrange
             var initialCount = this._repositoryReader.GetAll().Count();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo1);

@@ -1,11 +1,7 @@
-﻿// pluskal
-
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ArangoDB.Client;
-using UnitOfWork;
 
-namespace ArangoDBUnitOfWork
+namespace UnitOfWork.ArangoDBUnitOfWork
 {
     public class ArangoDBUnitOfWork : IUnitOfWork
     {

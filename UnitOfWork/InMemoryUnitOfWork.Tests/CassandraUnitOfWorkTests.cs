@@ -1,16 +1,13 @@
-// pluskal
-
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra;
-using Fakes;
-using InMemoryRepository;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.Fakes;
+using UnitOfWork.InMemoryRepository;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace InMemoryUnitOfWork.Tests
+namespace UnitOfWork.InMemoryUnitOfWork.Tests
 {
     public class CassandraUnitOfWorkTests
     {

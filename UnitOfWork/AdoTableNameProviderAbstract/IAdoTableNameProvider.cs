@@ -1,9 +1,7 @@
-﻿// pluskal
+﻿using System;
+using UnitOfWork.BaseDataEntity;
 
-using System;
-using BaseDataEntity;
-
-namespace AdoTableNameProviderAbstract
+namespace UnitOfWork.AdoTableNameProviderAbstract
 {
     public interface IAdoTableNameProvider
     {

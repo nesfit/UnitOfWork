@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Cassandra;
 using Cassandra.Mapping;
-using UnitOfWork;
 
-namespace CassandraUnitOfWork
+namespace UnitOfWork.CassandraUnitOfWork
 {
     public class CassandraUnitOfWork : IUnitOfWork
     {
@@ -18,6 +17,11 @@ namespace CassandraUnitOfWork
 
         public ISession Session { get; }
 
+        public void Dispose()
+        {
+            this.Session?.Dispose();
+        }
+
         public void SaveChanges()
         {
         }
@@ -25,11 +29,6 @@ namespace CassandraUnitOfWork
         public Task SaveChangesAsync()
         {
             return Task.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            this.Session?.Dispose();
         }
 
         private static void DoOneTimeSetUp(Mappings mappings)

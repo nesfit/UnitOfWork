@@ -1,9 +1,7 @@
-﻿// pluskal
+﻿using System.Data;
+using UnitOfWork.BaseDataEntity;
 
-using System.Data;
-using BaseDataEntity;
-
-namespace AdoDataMapperAbstract
+namespace UnitOfWork.AdoDataMapperAbstract
 {
     public interface IAdoDataMapper<T> where T : class, IDataEntity, new()
     {

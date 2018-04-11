@@ -1,15 +1,13 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using AdoDataMapperAbstract;
-using AdoDbCommandProviderAbstract;
-using BaseDataEntity;
-using Repository;
+using UnitOfWork.AdoDataMapperAbstract;
+using UnitOfWork.AdoDbCommandProviderAbstract;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace AdoRepository
+namespace UnitOfWork.AdoRepository
 {
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>
@@ -67,7 +65,7 @@ namespace AdoRepository
         public T Delete(T item)
         {
             if (item == null)
-                throw new ArgumentNullException(nameof(item),"T item cannot be null.");
+                throw new ArgumentNullException(nameof(item), "T item cannot be null.");
 
             T result = null;
             var command = this._commandProvider.DeleteCommand(this._connection, null, item);

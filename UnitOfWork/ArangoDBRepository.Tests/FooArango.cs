@@ -1,10 +1,8 @@
-// pluskal
-
 using System;
 using ArangoDB.Client;
-using Fakes;
+using UnitOfWork.Fakes;
 
-namespace ArangoDBRepository.Tests
+namespace UnitOfWork.ArangoDBRepository.Tests
 {
     public class FooArango : Foo
     {

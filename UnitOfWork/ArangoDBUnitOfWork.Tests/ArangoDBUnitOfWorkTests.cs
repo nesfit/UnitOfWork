@@ -1,16 +1,13 @@
-// pluskal
-
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ArangoDBRepository;
-using ArangoDBRepository.Tests;
-using Fakes;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.ArangoDBRepository;
+using UnitOfWork.ArangoDBRepository.Tests;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace ArangoDBUnitOfWork.Tests
+namespace UnitOfWork.ArangoDBUnitOfWork.Tests
 {
     public class ArangoDBUnitOfWorkTests : IClassFixture<ArangoRepositoryTestsFixtureData>
     {

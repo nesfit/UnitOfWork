@@ -1,9 +1,7 @@
-﻿// pluskal
+﻿using System;
+using UnitOfWork.BaseDataEntity;
 
-using System;
-using BaseDataEntity;
-
-namespace Fakes
+namespace UnitOfWork.Fakes
 {
     public class Foo : IDataEntity
     {

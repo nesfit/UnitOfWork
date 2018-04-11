@@ -1,11 +1,11 @@
 ﻿using System;
 using BenchmarkDotNet.Running;
 
-namespace CassandraRepository.Benchmarks
+namespace UnitOfWork.CassandraRepository.Benchmarks
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(String[] args)
         {
             BenchmarkRunner.Run<CassandraRepositoryBenchrmark>();
 

@@ -1,10 +1,6 @@
-﻿// pluskal
+﻿using System.Threading.Tasks;
 
-using System;
-using System.Threading.Tasks;
-using UnitOfWork;
-
-namespace InMemoryUnitOfWork
+namespace UnitOfWork.InMemoryUnitOfWork
 {
     public class InMemoryUnitOfWork : IUnitOfWork
     {

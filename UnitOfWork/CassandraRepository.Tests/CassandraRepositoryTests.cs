@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra.Data.Linq;
-using Fakes;
 using Moq;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace CassandraRepository.Tests
+namespace UnitOfWork.CassandraRepository.Tests
 {
     public class CassandraRepositoryTests : IClassFixture<CassandraRepositoryTestsFixtureData>
     {
@@ -57,7 +56,7 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             var initialCount = this.GetCount();
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
 
             //Act
             this._repositoryWriter.Insert(foo);
@@ -73,11 +72,11 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             var initialCount = this.GetCount();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
-            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            this._repositoryWriter.InsertRange(new[] {foo1, foo2});
             this._unitOfWork.SaveChanges();
 
             //Assert
@@ -90,7 +89,7 @@ namespace CassandraRepository.Tests
         public void DeletesEntity()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._unitOfWork.SaveChanges();
             var initialCount = this.GetCount();
@@ -108,7 +107,7 @@ namespace CassandraRepository.Tests
         public void DeletesEntityById()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._unitOfWork.SaveChanges();
             var initialCount = this.GetCount();
@@ -137,7 +136,7 @@ namespace CassandraRepository.Tests
         public void UpdatesEntity()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid(), Name = "A" };
+            var foo = new Foo {Id = Guid.NewGuid(), Name = "A"};
             this._repositoryWriter.Insert(foo);
             this._unitOfWork.SaveChanges();
 
@@ -155,7 +154,7 @@ namespace CassandraRepository.Tests
         public void GetsItemById()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             this._repositoryWriter.Insert(foo);
             this._unitOfWork.SaveChanges();
 
@@ -171,9 +170,9 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             this.DeleteAll();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
-            this._repositoryWriter.InsertRange(new[] { foo1, foo2 });
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
+            this._repositoryWriter.InsertRange(new[] {foo1, foo2});
             this._unitOfWork.SaveChanges();
 
             //Act
@@ -193,7 +192,7 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             var initialCount = this.GetCount();
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
 
             //Act
             await this._repositoryWriterAsync.InsertAsync(foo);
@@ -209,11 +208,11 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             var initialCount = this.GetCount();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
 
             //Act
-            await this._repositoryWriterAsync.InsertRangeAsync(new[] { foo1, foo2 });
+            await this._repositoryWriterAsync.InsertRangeAsync(new[] {foo1, foo2});
             await this._unitOfWork.SaveChangesAsync();
 
             //Assert
@@ -226,7 +225,7 @@ namespace CassandraRepository.Tests
         public async Task DeletesEntityAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             this._unitOfWork.SaveChanges();
             var initialCount = this.GetCount();
@@ -244,7 +243,7 @@ namespace CassandraRepository.Tests
         public async Task DeletesEntityByIdAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._unitOfWork.SaveChangesAsync();
             var initialCount = this.GetCount();
@@ -273,7 +272,7 @@ namespace CassandraRepository.Tests
         public async Task UpdatesEntityAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid(), Name = "A" };
+            var foo = new Foo {Id = Guid.NewGuid(), Name = "A"};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._unitOfWork.SaveChangesAsync();
 
@@ -291,7 +290,7 @@ namespace CassandraRepository.Tests
         public async Task GetsItemByIdAsync()
         {
             //Arrange
-            var foo = new Foo { Id = Guid.NewGuid() };
+            var foo = new Foo {Id = Guid.NewGuid()};
             await this._repositoryWriterAsync.InsertAsync(foo);
             await this._unitOfWork.SaveChangesAsync();
 
@@ -307,9 +306,9 @@ namespace CassandraRepository.Tests
         {
             //Arrange
             this.DeleteAll();
-            var foo1 = new Foo { Id = Guid.NewGuid() };
-            var foo2 = new Foo { Id = Guid.NewGuid() };
-            await this._repositoryWriterAsync.InsertRangeAsync(new[] { foo1, foo2 });
+            var foo1 = new Foo {Id = Guid.NewGuid()};
+            var foo2 = new Foo {Id = Guid.NewGuid()};
+            await this._repositoryWriterAsync.InsertRangeAsync(new[] {foo1, foo2});
             await this._unitOfWork.SaveChangesAsync();
 
             //Act

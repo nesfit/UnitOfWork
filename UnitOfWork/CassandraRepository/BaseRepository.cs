@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataEntity;
 using Cassandra;
 using Cassandra.Data.Linq;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace CassandraRepository
+namespace UnitOfWork.CassandraRepository
 {
-    public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
+    public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
+        IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
     {
         protected readonly ISession Session;
 
@@ -21,7 +21,7 @@ namespace CassandraRepository
             if (!(unitOfWork is CassandraUnitOfWork.CassandraUnitOfWork))
                 throw new ArgumentException("IUnitOfWork is not implemented by CassandraUnitOfWork class");
 
-            this.Session = ((CassandraUnitOfWork.CassandraUnitOfWork)unitOfWork).Session;
+            this.Session = ((CassandraUnitOfWork.CassandraUnitOfWork) unitOfWork).Session;
 
             this.Table = this.Session.GetTable<TEntity>();
 
@@ -43,7 +43,6 @@ namespace CassandraRepository
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await this.Table.Select(i => i).ExecuteAsync();
-
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)
@@ -152,5 +151,4 @@ namespace CassandraRepository
             await this.InsertAsync(item);
         }
     }
-
 }

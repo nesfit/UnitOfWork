@@ -1,5 +1,3 @@
-// pluskal
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +5,7 @@ using System.Net;
 using ArangoDB.Client;
 using ArangoDB.Client.Data;
 
-namespace ArangoDBRepository.Tests
+namespace UnitOfWork.ArangoDBRepository.Tests
 {
     public class ArangoRepositoryTestsFixtureData
     {

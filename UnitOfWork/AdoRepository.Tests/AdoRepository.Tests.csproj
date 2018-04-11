@@ -6,6 +6,12 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <AssemblyName>UnitOfWork.AdoRepository.Tests</AssemblyName>
+    <RootNamespace>UnitOfWork.AdoRepository.Tests</RootNamespace>
+	<Version>1.0.0</Version>
+    <Authors>NES@FIT</Authors>
+    <Company>BUT.NES@FIT</Company>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
