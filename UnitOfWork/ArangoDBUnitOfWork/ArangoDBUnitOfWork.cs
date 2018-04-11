@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ArangoDB.Client;
-using UnitOfWork;
 
-namespace ArangoDBUnitOfWork
+namespace UnitOfWork.ArangoDBUnitOfWork
 {
     public class ArangoDBUnitOfWork : IUnitOfWork
     {

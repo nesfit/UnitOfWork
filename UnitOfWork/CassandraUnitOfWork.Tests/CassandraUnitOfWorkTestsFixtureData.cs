@@ -1,7 +1,7 @@
 using Cassandra;
-using CassandraFakes;
+using UnitOfWork.CassandraFakes;
 
-namespace CassandraUnitOfWork.Tests
+namespace UnitOfWork.CassandraUnitOfWork.Tests
 {
     public class CassandraUnitOfWorkTestsFixtureData
     {

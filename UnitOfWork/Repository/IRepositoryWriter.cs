@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace Repository
+namespace UnitOfWork.Repository
 {
     /// <summary>
     ///     Generic writer repository interface

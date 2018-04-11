@@ -1,7 +1,7 @@
 ﻿using System;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace Fakes
+namespace UnitOfWork.Fakes
 {
     public class Foo : IDataEntity
     {

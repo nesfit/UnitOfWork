@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>UnitOfWork.CassandraRepository.Benchmarks</AssemblyName>
+    <RootNamespace>UnitOfWork.CassandraRepository.Benchmarks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

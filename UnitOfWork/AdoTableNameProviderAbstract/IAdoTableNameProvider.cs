@@ -1,7 +1,7 @@
 ﻿using System;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace AdoTableNameProviderAbstract
+namespace UnitOfWork.AdoTableNameProviderAbstract
 {
     public interface IAdoTableNameProvider
     {

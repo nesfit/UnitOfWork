@@ -2,14 +2,14 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using AdoDataMapperAbstract;
-using AdoDbCommandProviderAbstract;
-using Fakes;
 using Moq;
-using Repository;
+using UnitOfWork.AdoDataMapperAbstract;
+using UnitOfWork.AdoDbCommandProviderAbstract;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace AdoRepository.Tests
+namespace UnitOfWork.AdoRepository.Tests
 {
     public class BaseRepositoryTests : IDisposable
     {

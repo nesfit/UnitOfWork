@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra.Data.Linq;
-using Fakes;
 using Moq;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace CassandraRepository.Tests
+namespace UnitOfWork.CassandraRepository.Tests
 {
     public class CassandraRepositoryTests : IClassFixture<CassandraRepositoryTestsFixtureData>
     {

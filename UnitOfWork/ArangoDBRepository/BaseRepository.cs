@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArangoDB.Client;
-using BaseDataEntity;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace ArangoDBRepository
+namespace UnitOfWork.ArangoDBRepository
 {
     public class BaseRepository<TEntity> : IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>,
         IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()

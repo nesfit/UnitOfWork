@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
+    <AssemblyName>UnitOfWork.EF6Fakes</AssemblyName>
+    <RootNamespace>UnitOfWork.EF6Fakes</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

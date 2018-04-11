@@ -2,14 +2,13 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Cassandra;
-using CassandraFakes;
-using CassandraRepository;
-using Fakes;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.CassandraFakes;
+using UnitOfWork.CassandraRepository;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace CassandraUnitOfWork.Tests
+namespace UnitOfWork.CassandraUnitOfWork.Tests
 {
     public class CassandraUnitOfWorkTests : IClassFixture<CassandraUnitOfWorkTestsFixtureData>
     {

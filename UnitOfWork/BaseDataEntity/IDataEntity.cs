@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseDataEntity
+namespace UnitOfWork.BaseDataEntity
 {
     /// <summary>
     ///     Base interface for all data entities in project

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace Repository
+namespace UnitOfWork.Repository
 {
     /// <summary>
     ///     Generic asynchronous repository reader interface

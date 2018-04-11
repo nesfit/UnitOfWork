@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>UnitOfWork.ArangoDBUnitOfWork</AssemblyName>
+    <RootNamespace>UnitOfWork.ArangoDBUnitOfWork</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

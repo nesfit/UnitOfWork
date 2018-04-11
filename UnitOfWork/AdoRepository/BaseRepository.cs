@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using AdoDataMapperAbstract;
-using AdoDbCommandProviderAbstract;
-using BaseDataEntity;
-using Repository;
+using UnitOfWork.AdoDataMapperAbstract;
+using UnitOfWork.AdoDbCommandProviderAbstract;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace AdoRepository
+namespace UnitOfWork.AdoRepository
 {
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>

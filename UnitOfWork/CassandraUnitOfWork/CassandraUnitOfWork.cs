@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Cassandra;
 using Cassandra.Mapping;
-using UnitOfWork;
 
-namespace CassandraUnitOfWork
+namespace UnitOfWork.CassandraUnitOfWork
 {
     public class CassandraUnitOfWork : IUnitOfWork
     {

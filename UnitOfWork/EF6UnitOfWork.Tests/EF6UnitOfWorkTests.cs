@@ -4,14 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Effort;
-using EF6Fakes;
-using EF6Repository;
-using Fakes;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.EF6Fakes;
+using UnitOfWork.EF6Repository;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace EF6UnitOfWork.Tests
+namespace UnitOfWork.EF6UnitOfWork.Tests
 {
     public class EF6UnitOfWorkTests
     {

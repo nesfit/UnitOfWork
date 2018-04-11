@@ -1,6 +1,6 @@
-﻿using BaseDataEntity;
+﻿using UnitOfWork.BaseDataEntity;
 
-namespace Repository
+namespace UnitOfWork.Repository
 {
     public interface IRepository<TEntity> : IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
         IRepositoryWriterAsync<TEntity>

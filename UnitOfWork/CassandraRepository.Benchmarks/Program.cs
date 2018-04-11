@@ -1,7 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Running;
 
-namespace CassandraRepository.Benchmarks
+namespace UnitOfWork.CassandraRepository.Benchmarks
 {
     public class Program
     {

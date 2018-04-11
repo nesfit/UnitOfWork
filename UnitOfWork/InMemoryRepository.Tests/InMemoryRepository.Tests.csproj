@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>UnitOfWork.InMemoryRepository.Tests</AssemblyName>
+
+    <RootNamespace>UnitOfWork.InMemoryRepository.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

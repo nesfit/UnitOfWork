@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>UnitOfWork.CassandraFakes</AssemblyName>
+    <RootNamespace>UnitOfWork.CassandraFakes</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

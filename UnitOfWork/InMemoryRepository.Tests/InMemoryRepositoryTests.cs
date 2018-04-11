@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Fakes;
 using Moq;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.Fakes;
+using UnitOfWork.Repository;
 using Xunit;
 
-namespace InMemoryRepository.Tests
+namespace UnitOfWork.InMemoryRepository.Tests
 {
     public class InMemoryRepositoryTests
     {

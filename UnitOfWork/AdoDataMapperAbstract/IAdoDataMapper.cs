@@ -1,7 +1,7 @@
 ﻿using System.Data;
-using BaseDataEntity;
+using UnitOfWork.BaseDataEntity;
 
-namespace AdoDataMapperAbstract
+namespace UnitOfWork.AdoDataMapperAbstract
 {
     public interface IAdoDataMapper<T> where T : class, IDataEntity, new()
     {

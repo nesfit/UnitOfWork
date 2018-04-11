@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataEntity;
-using EF6UnitOfWork;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.EF6UnitOfWork;
+using UnitOfWork.Repository;
 
-namespace EF6Repository
+namespace UnitOfWork.EF6Repository
 {
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>,

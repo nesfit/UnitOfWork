@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataEntity;
 using Cassandra;
 using Cassandra.Data.Linq;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace CassandraRepository
+namespace UnitOfWork.CassandraRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
         IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()

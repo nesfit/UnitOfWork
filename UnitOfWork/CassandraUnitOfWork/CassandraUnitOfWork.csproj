@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>UnitOfWork.CassandraUnitOfWork</AssemblyName>
+    <RootNamespace>UnitOfWork.CassandraUnitOfWork</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseDataEntity;
-using Repository;
-using UnitOfWork;
+using UnitOfWork.BaseDataEntity;
+using UnitOfWork.Repository;
 
-namespace InMemoryRepository
+namespace UnitOfWork.InMemoryRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
         IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()

@@ -4,11 +4,11 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Jobs;
 using BenchmarkDotNet.Engines;
 using Cassandra;
-using CassandraFakes;
-using CassandraRepository.Tests;
-using Fakes;
+using UnitOfWork.CassandraFakes;
+using UnitOfWork.CassandraRepository.Tests;
+using UnitOfWork.Fakes;
 
-namespace CassandraRepository.Benchmarks
+namespace UnitOfWork.CassandraRepository.Benchmarks
 {
     [SimpleJob(RunStrategy.Throughput, 1, 1, 2, id: "FastJob")]
     public class CassandraRepositoryBenchrmark
