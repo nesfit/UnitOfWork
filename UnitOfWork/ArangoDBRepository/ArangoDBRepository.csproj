@@ -5,6 +5,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>UnitOfWork.ArangoDBRepository</AssemblyName>
     <RootNamespace>UnitOfWork.ArangoDBRepository</RootNamespace>
+	<Version>1.0.0</Version>
+    <Authors>NES@FIT</Authors>
+    <Company>BUT.NES@FIT</Company>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,6 +5,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>UnitOfWork.CassandraRepository</AssemblyName>
     <RootNamespace>UnitOfWork.CassandraRepository</RootNamespace>
+	<Version>1.0.0</Version>
+    <Authors>NES@FIT</Authors>
+    <Company>BUT.NES@FIT</Company>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

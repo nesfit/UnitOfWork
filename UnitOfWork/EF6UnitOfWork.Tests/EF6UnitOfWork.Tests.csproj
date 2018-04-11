@@ -8,6 +8,10 @@
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
     <AssemblyName>UnitOfWork.EF6UnitOfWork.Tests</AssemblyName>
     <RootNamespace>UnitOfWork.EF6UnitOfWork.Tests</RootNamespace>
+	<Version>1.0.0</Version>
+    <Authors>NES@FIT</Authors>
+    <Company>BUT.NES@FIT</Company>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
