@@ -1,6 +1,5 @@
 using Cassandra;
 using CassandraFakes;
-using Fakes;
 
 namespace CassandraUnitOfWork.Tests
 {

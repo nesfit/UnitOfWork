@@ -1,6 +1,4 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using BaseDataEntity;
 
 namespace AdoTableNameProviderAbstract

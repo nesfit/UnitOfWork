@@ -1,6 +1,4 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace UnitOfWork

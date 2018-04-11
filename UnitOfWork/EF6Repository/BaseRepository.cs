@@ -1,6 +1,4 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -12,7 +10,6 @@ using UnitOfWork;
 
 namespace EF6Repository
 {
-
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>,
         IRepositoryWriterAsync<T>, IRepositoryReaderAsync<T>

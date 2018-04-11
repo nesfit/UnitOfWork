@@ -18,6 +18,11 @@ namespace CassandraUnitOfWork
 
         public ISession Session { get; }
 
+        public void Dispose()
+        {
+            this.Session?.Dispose();
+        }
+
         public void SaveChanges()
         {
         }
@@ -25,11 +30,6 @@ namespace CassandraUnitOfWork
         public Task SaveChangesAsync()
         {
             return Task.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            this.Session?.Dispose();
         }
 
         private static void DoOneTimeSetUp(Mappings mappings)

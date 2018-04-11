@@ -1,6 +1,4 @@
-﻿// pluskal
-
-using System.Data;
+﻿using System.Data;
 using BaseDataEntity;
 
 namespace AdoDataMapperAbstract

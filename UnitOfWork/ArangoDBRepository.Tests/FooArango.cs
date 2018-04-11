@@ -1,5 +1,3 @@
-// pluskal
-
 using System;
 using ArangoDB.Client;
 using Fakes;

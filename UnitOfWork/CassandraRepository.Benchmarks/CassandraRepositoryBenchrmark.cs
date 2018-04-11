@@ -1,6 +1,4 @@
-﻿// pluskal
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Jobs;
@@ -20,7 +18,7 @@ namespace CassandraRepository.Benchmarks
         private Foo[] _smallItems;
         private CassandraUnitOfWork.CassandraUnitOfWork _unitOfWork;
 
-        [Params(/*100, */1000/*, 10_000 *//*, 100_000*/)]
+        [Params( /*100, */1000 /*, 10_000 */ /*, 100_000*/)]
         public Int32 ItemsCount { get; set; }
 
         public Int32 Mtu { get; set; } = 1500;
