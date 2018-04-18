@@ -8,7 +8,7 @@ namespace UnitOfWork.Repository
     ///     Generic writer repository interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
-    public interface IRepositoryWriter<T> where T : class, IDataEntity, new()
+    public interface IRepositoryWriter<T> where T : class, IDataEntity
     {
         /// <summary>
         ///     Deletes item

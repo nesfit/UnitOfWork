@@ -10,7 +10,7 @@ using UnitOfWork.Repository;
 namespace UnitOfWork.CassandraRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
-        IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
+        IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity
     {
         protected readonly ISession Session;
 

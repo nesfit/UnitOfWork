@@ -8,7 +8,7 @@ using UnitOfWork.Repository;
 namespace UnitOfWork.InMemoryRepository
 {
     public class BaseRepository<TEntity> : IRepository<TEntity>, IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>, IRepositoryWriter<TEntity>,
-        IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
+        IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity
     {
         private readonly List<TEntity> _data = new List<TEntity>();
 

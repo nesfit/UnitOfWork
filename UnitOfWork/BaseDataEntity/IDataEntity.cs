@@ -7,6 +7,6 @@ namespace UnitOfWork.BaseDataEntity
     /// </summary>
     public interface IDataEntity
     {
-        Guid Id { get; set; }
+        Guid Id { get; }
     }
 }
