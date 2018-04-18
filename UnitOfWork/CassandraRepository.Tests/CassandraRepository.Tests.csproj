@@ -8,7 +8,7 @@
     <AssemblyName>UnitOfWork.CassandraRepository.Tests</AssemblyName>
 
     <RootNamespace>UnitOfWork.CassandraRepository.Tests</RootNamespace>
-	<Version>1.0.0</Version>
+	<Version>1.0.1</Version>
     <Authors>NES@FIT</Authors>
     <Company>BUT.NES@FIT</Company>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
