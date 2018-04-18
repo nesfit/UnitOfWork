@@ -9,7 +9,7 @@ namespace UnitOfWork.Repository
     /// Generic writer repository interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
-    public interface IRepositoryWriterAsync<T> where T : class, IDataEntity, new()
+    public interface IRepositoryWriterAsync<T> where T : class, IDataEntity
     {
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         Task<T> DeleteAsync(Guid id);

@@ -9,7 +9,7 @@ using UnitOfWork.Repository;
 namespace UnitOfWork.ArangoDBRepository
 {
     public class BaseRepository<TEntity> : IRepositoryReader<TEntity>, IRepositoryReaderAsync<TEntity>,
-        IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity, new()
+        IRepositoryWriter<TEntity>, IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity
     {
         public BaseRepository(IUnitOfWork unitOfWork)
         {

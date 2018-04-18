@@ -8,7 +8,7 @@ namespace UnitOfWork.Repository
     ///     Generic repository reader interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
-    public interface IRepositoryReader<T> where T : class, IDataEntity, new()
+    public interface IRepositoryReader<T> where T : class, IDataEntity
     {
         /// <summary>
         ///     Gets all items in persistence storage

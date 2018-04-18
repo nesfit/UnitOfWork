@@ -9,7 +9,7 @@ namespace UnitOfWork.Repository
     ///     Generic asynchronous repository reader interface
     /// </summary>
     /// <typeparam name="T">Type must be a class and inherited from IDataEntity interface</typeparam>
-    public interface IRepositoryReaderAsync<T> where T : class, IDataEntity, new()
+    public interface IRepositoryReaderAsync<T> where T : class, IDataEntity
     {
         /// <summary>
         ///     Gets all items in persistence storage asyncronously

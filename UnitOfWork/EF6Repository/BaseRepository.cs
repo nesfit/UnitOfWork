@@ -12,7 +12,7 @@ namespace UnitOfWork.EF6Repository
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>,
         IRepositoryWriterAsync<T>, IRepositoryReaderAsync<T>
-        where T : class, IDataEntity, new()
+        where T : class, IDataEntity
     {
         private readonly DbContext _context;
         private readonly IDbSet<T> _dbSet;
