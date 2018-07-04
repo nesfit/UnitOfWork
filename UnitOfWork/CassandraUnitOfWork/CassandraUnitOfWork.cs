@@ -9,10 +9,10 @@ namespace UnitOfWork.CassandraUnitOfWork
     {
         private static Boolean _setUpDone;
 
-        public CassandraUnitOfWork(ICluster cluster, Mappings mappings)
+        public CassandraUnitOfWork(ICluster cluster, Mappings mappings, String keyspace = null)
         {
             DoOneTimeSetUp(mappings);
-            this.Session = cluster.Connect();
+            this.Session = keyspace != null ? cluster.Connect(keyspace) : cluster.Connect();
         }
 
         public ISession Session { get; }
