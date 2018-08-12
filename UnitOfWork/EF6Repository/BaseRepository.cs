@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using UnitOfWork.BaseDataEntity;
 using UnitOfWork.EF6UnitOfWork;
@@ -40,6 +41,11 @@ namespace UnitOfWork.EF6Repository
             return item;
         }
 
+        public virtual IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> predicate)
+        {
+            return this._dbSet.Where(predicate);
+        }
+
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             return await this._dbSet.ToListAsync();
@@ -48,6 +54,11 @@ namespace UnitOfWork.EF6Repository
         public virtual Task<T> GetByIdAsync(Guid id)
         {
             return this._dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public virtual Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate)
+        {
+            return Task.Run(() => this.GetAllWhere(predicate));
         }
 
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>

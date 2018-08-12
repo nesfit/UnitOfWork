@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnitOfWork.BaseDataEntity;
 
 namespace UnitOfWork.Repository
@@ -22,5 +23,12 @@ namespace UnitOfWork.Repository
         /// <param name="id">Id of item to get</param>
         /// <returns>Item if found or null otherwise</returns>
         T GetById(Guid id);
+        
+        /// <summary>
+        ///     Get all items filtered by a predicate
+        /// </summary>
+        /// <param name="predicate">Filter predicate</param>
+        /// <returns>All items of type T in persistence storage which satisfy a predicate</returns>
+        IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> predicate);
     }
 }

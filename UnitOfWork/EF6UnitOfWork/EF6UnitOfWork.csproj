@@ -9,7 +9,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>UnitOfWork.EF6UnitOfWork</AssemblyName>
     <RootNamespace>UnitOfWork.EF6UnitOfWork</RootNamespace>
-	<Version>1.0.1</Version>
+	<Version>1.0.4</Version>
     <Authors>NES@FIT</Authors>
     <Company>BUT.NES@FIT</Company>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>

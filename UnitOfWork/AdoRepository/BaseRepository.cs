@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using UnitOfWork.AdoDataMapperAbstract;
 using UnitOfWork.AdoDbCommandProviderAbstract;
 using UnitOfWork.BaseDataEntity;
@@ -12,7 +13,7 @@ namespace UnitOfWork.AdoRepository
     public class BaseRepository<T> :
         IRepositoryWriter<T>, IRepositoryReader<T>
         where T : class, IDataEntity, new()
-    {
+    {    
         private readonly IAdoDbCommandProvider<T> _commandProvider;
         private readonly IDbConnection _connection;
         private readonly IAdoDataMapper<T> _dataMapper;
@@ -50,6 +51,11 @@ namespace UnitOfWork.AdoRepository
         public T GetById(Guid id)
         {
             return this.GetById(id, true);
+        }
+
+        public IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
 
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ArangoDB.Client;
 using UnitOfWork.BaseDataEntity;
@@ -34,6 +35,11 @@ namespace UnitOfWork.ArangoDBRepository
             return this.Database.Query<TEntity>().FirstOrDefault(entity => entity.Id == id);
         }
 
+        public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.Database.Query<TEntity>().Where(predicate).AsEnumerable();
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await this.Database.Query<TEntity>().ToListAsync();
@@ -42,6 +48,11 @@ namespace UnitOfWork.ArangoDBRepository
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await this.Database.Query<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id);
+        }
+
+        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Task.Run(() => this.GetAllWhere(predicate));
         }
 
         public TEntity Delete(Guid id)
