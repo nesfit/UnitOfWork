@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using UnitOfWork.BaseDataEntity;
 using UnitOfWork.Repository;
@@ -18,6 +19,12 @@ namespace UnitOfWork.DevnullRepository
             throw new NotImplementedException();
         }
 
+        public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public Task<IEnumerable<TEntity>> GetAllAsync()
         {
             throw new NotImplementedException();
@@ -27,6 +34,12 @@ namespace UnitOfWork.DevnullRepository
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public TEntity Delete(Guid id)
         {

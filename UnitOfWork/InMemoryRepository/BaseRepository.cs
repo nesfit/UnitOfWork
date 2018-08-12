@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using UnitOfWork.BaseDataEntity;
 using UnitOfWork.Repository;
@@ -30,6 +31,11 @@ namespace UnitOfWork.InMemoryRepository
             return this._data.FirstOrDefault(entity => entity.Id == id);
         }
 
+        public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this._data.Where(predicate.Compile());
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await Task.FromResult(this.GetAll());
@@ -38,6 +44,11 @@ namespace UnitOfWork.InMemoryRepository
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await Task.FromResult(this.GetById(id));
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await Task.FromResult(this.GetAllWhere(predicate));
         }
 
         public TEntity Delete(Guid id)

@@ -198,6 +198,24 @@ namespace UnitOfWork.InMemoryRepository.Tests
             Assert.Contains(foo2, items);
         }
 
+        [Fact]
+        public void GetAllWhere()
+        {
+            //Arrange
+            this.DeleteAll();
+            var foo1 = new Foo {Id = Guid.NewGuid(), Name = "A"};
+            var foo2 = new Foo {Id = Guid.NewGuid(), Name = "B"};
+            this._repositoryWriter.InsertRange(new[] {foo1, foo2});
+            this._unitOfWork.SaveChanges();
+
+            //Act
+            var items = this._repositoryReader.GetAllWhere(item => item.Name.Equals("A")).ToArray();
+
+            //Assert
+            Assert.Equal(1, items.Length);
+            Assert.Equal("A", items.First().Name);
+        }
+
         #endregion Test CRUD
 
         #region Test CRUD Async
@@ -334,6 +352,26 @@ namespace UnitOfWork.InMemoryRepository.Tests
             Assert.Contains(foo1, foos);
             Assert.Contains(foo2, foos);
         }
+        
+        [Fact]
+        public async void GetAllWhereAsync()
+        {
+            //Arrange
+            this.DeleteAll();
+            var foo1 = new Foo {Id = Guid.NewGuid(), Name = "A"};
+            var foo2 = new Foo {Id = Guid.NewGuid(), Name = "B"};
+            await this._repositoryWriterAsync.InsertRangeAsync(new[] {foo1, foo2});
+            await this._unitOfWork.SaveChangesAsync();
+
+            //Act
+            var items = await this._repositoryReaderAsync.GetAllWhereAsync(item => item.Name.Equals("A"));
+
+            //Assert
+            var foos = items as Foo[] ?? items.ToArray();
+            Assert.Equal(1, foos.Length);
+            Assert.Equal("A", foos.First().Name);
+        }
+        
 
         #endregion CRUD Async
 

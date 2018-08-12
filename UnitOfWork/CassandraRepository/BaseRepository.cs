@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Cassandra;
 using Cassandra.Data.Linq;
@@ -40,6 +41,11 @@ namespace UnitOfWork.CassandraRepository
             return this.Table.First(entity => entity.Id == id).Execute();
         }
 
+        public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.Table.Where(predicate);
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await this.Table.Select(i => i).ExecuteAsync();
@@ -48,6 +54,11 @@ namespace UnitOfWork.CassandraRepository
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await this.Table.First(entity => entity.Id == id).ExecuteAsync();
+        }
+
+        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.Table.Where(predicate).ExecuteAsync();
         }
 
         public TEntity Delete(Guid id)
