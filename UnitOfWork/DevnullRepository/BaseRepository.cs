@@ -40,7 +40,6 @@ namespace UnitOfWork.DevnullRepository
             throw new NotImplementedException();
         }
 
-
         public TEntity Delete(Guid id)
         {
             throw new NotImplementedException();
@@ -70,9 +69,9 @@ namespace UnitOfWork.DevnullRepository
             throw new NotImplementedException();
         }
 
-        public Task<TEntity> InsertAsync(TEntity item) => Task.FromResult(item);
+        public async Task<TEntity> InsertAsync(TEntity item) => await Task.FromResult(item).ConfigureAwait(false);
 
-        public Task<IEnumerable<TEntity>> InsertRangeAsync(IEnumerable<TEntity> items) => Task.FromResult(items);
+        public async Task<IEnumerable<TEntity>> InsertRangeAsync(IEnumerable<TEntity> items) => await Task.FromResult(items).ConfigureAwait(false);
 
         public Task UpdateAsync(TEntity item)
         {

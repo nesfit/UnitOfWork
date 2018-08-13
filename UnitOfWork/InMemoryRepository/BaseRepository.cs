@@ -38,17 +38,17 @@ namespace UnitOfWork.InMemoryRepository
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await Task.FromResult(this.GetAll());
+            return await Task.FromResult(this.GetAll()).ConfigureAwait(false);
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await Task.FromResult(this.GetById(id));
+            return await Task.FromResult(this.GetById(id)).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await Task.FromResult(this.GetAllWhere(predicate));
+            return await Task.FromResult(this.GetAllWhere(predicate)).ConfigureAwait(false);
         }
 
         public TEntity Delete(Guid id)
@@ -103,11 +103,11 @@ namespace UnitOfWork.InMemoryRepository
 
         public async Task<TEntity> DeleteAsync(Guid id)
         {
-            var item = await this.GetByIdAsync(id);
+            var item = await this.GetByIdAsync(id).ConfigureAwait(false);
             if (item == null)
                 throw new ArgumentException($"Item with {id} was not found, thus cannot be deleted.");
 
-            await this.DeleteAsync(item);
+            await this.DeleteAsync(item).ConfigureAwait(false);
             return item;
         }
 
@@ -116,7 +116,7 @@ namespace UnitOfWork.InMemoryRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            return await Task.FromResult(this.Delete(item));
+            return await Task.FromResult(this.Delete(item)).ConfigureAwait(false);
         }
 
         public async Task<TEntity> InsertAsync(TEntity item)
@@ -124,7 +124,7 @@ namespace UnitOfWork.InMemoryRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await Task.FromResult(this.Insert(item));
+            await Task.FromResult(this.Insert(item)).ConfigureAwait(false);
 
             return item;
         }
@@ -135,7 +135,7 @@ namespace UnitOfWork.InMemoryRepository
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
             var insertRangeAsync = items as TEntity[] ?? items.ToArray();
-            await Task.FromResult(this.InsertRange(insertRangeAsync));
+            await Task.FromResult(this.InsertRange(insertRangeAsync)).ConfigureAwait(false);
 
             return insertRangeAsync;
         }
@@ -145,8 +145,8 @@ namespace UnitOfWork.InMemoryRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.DeleteAsync(item);
-            await this.InsertAsync(item);
+            await this.DeleteAsync(item).ConfigureAwait(false);
+            await this.InsertAsync(item).ConfigureAwait(false);
         }
     }
 }

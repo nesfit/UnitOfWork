@@ -26,7 +26,7 @@ namespace UnitOfWork.EF6Repository.Tests
             var connection = DbConnectionFactory.CreateTransient();
             this._context = new FooContext(connection);
 
-            var repository = new BaseRepository<Foo>(new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified));
+            var repository = new BaseRepository<Foo>(new EF6UnitOfWork.EF6UnitOfWork(this._context, IsolationLevel.Unspecified));
             this._repositoryWriter = repository;
             this._repositoryReader = repository;
             this._repositoryWriterAsync = repository;

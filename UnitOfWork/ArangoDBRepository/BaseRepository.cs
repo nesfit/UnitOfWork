@@ -42,17 +42,17 @@ namespace UnitOfWork.ArangoDBRepository
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this.Database.Query<TEntity>().ToListAsync();
+            return await this.Database.Query<TEntity>().ToListAsync().ConfigureAwait(false);
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await this.Database.Query<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id);
+            return await this.Database.Query<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id).ConfigureAwait(false);
         }
 
-        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return Task.Run(() => this.GetAllWhere(predicate));
+            return await Task.Run(() => this.GetAllWhere(predicate));
         }
 
         public TEntity Delete(Guid id)
@@ -108,7 +108,7 @@ namespace UnitOfWork.ArangoDBRepository
             if (item == null)
                 throw new ArgumentException($"Item with {id} was not found, thus cannot be deleted.");
 
-            await this.Database.RemoveByIdAsync<TEntity>(id.ToString());
+            await this.Database.RemoveByIdAsync<TEntity>(id.ToString()).ConfigureAwait(false);
 
             return item;
         }
@@ -118,7 +118,7 @@ namespace UnitOfWork.ArangoDBRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.Database.RemoveAsync<TEntity>(item);
+            await this.Database.RemoveAsync<TEntity>(item).ConfigureAwait(false);
             return item;
         }
 
@@ -127,7 +127,7 @@ namespace UnitOfWork.ArangoDBRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.Database.InsertAsync<TEntity>(item);
+            await this.Database.InsertAsync<TEntity>(item).ConfigureAwait(false);
             return item;
         }
 
@@ -137,7 +137,7 @@ namespace UnitOfWork.ArangoDBRepository
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
             var insertRangeAsync = items.ToList();
-            await this.Database.InsertMultipleAsync<TEntity>(insertRangeAsync);
+            await this.Database.InsertMultipleAsync<TEntity>(insertRangeAsync).ConfigureAwait(false);
 
             return insertRangeAsync;
         }
@@ -147,7 +147,7 @@ namespace UnitOfWork.ArangoDBRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.Database.UpdateByIdAsync<TEntity>(item.Id.ToString(), item);
+            await this.Database.UpdateByIdAsync<TEntity>(item.Id.ToString(), item).ConfigureAwait(false);
         }
     }
 }
