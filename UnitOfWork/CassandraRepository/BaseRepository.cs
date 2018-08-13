@@ -48,17 +48,17 @@ namespace UnitOfWork.CassandraRepository
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this.Table.Select(i => i).ExecuteAsync();
+            return await this.Table.Select(i => i).ExecuteAsync().ConfigureAwait(false);
         }
 
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await this.Table.First(entity => entity.Id == id).ExecuteAsync();
+            return await this.Table.First(entity => entity.Id == id).ExecuteAsync().ConfigureAwait(false);
         }
 
-        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return this.Table.Where(predicate).ExecuteAsync();
+            return await this.Table.Where(predicate).ExecuteAsync().ConfigureAwait(false);
         }
 
         public TEntity Delete(Guid id)
@@ -117,7 +117,7 @@ namespace UnitOfWork.CassandraRepository
             if (item == null)
                 throw new ArgumentException($"Item with {id} was not found, thus cannot be deleted.");
 
-            await this.DeleteAsync(item);
+            await this.DeleteAsync(item).ConfigureAwait(false);
             return item;
         }
 
@@ -128,7 +128,7 @@ namespace UnitOfWork.CassandraRepository
 
             var result = await this.Table.Where(i => i.Id == item.Id)
                 .Delete()
-                .ExecuteAsync();
+                .ExecuteAsync().ConfigureAwait(false);
             return item;
         }
 
@@ -137,7 +137,7 @@ namespace UnitOfWork.CassandraRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.Table.Insert(item).ExecuteAsync();
+            await this.Table.Insert(item).ExecuteAsync().ConfigureAwait(false);
             return item;
         }
 
@@ -148,7 +148,7 @@ namespace UnitOfWork.CassandraRepository
 
             // Todo rewrite to appropriate bulk implementation
             var insertRange = items as TEntity[] ?? items.ToArray();
-            foreach (var item in insertRange) await this.InsertAsync(item);
+            foreach (var item in insertRange) await this.InsertAsync(item).ConfigureAwait(false);
 
             return insertRange;
         }
@@ -158,8 +158,8 @@ namespace UnitOfWork.CassandraRepository
             if (item == null)
                 throw new ArgumentNullException("TEntity item cannot be null.");
 
-            await this.DeleteAsync(item);
-            await this.InsertAsync(item);
+            await this.DeleteAsync(item).ConfigureAwait(false);
+            await this.InsertAsync(item).ConfigureAwait(false);
         }
     }
 }

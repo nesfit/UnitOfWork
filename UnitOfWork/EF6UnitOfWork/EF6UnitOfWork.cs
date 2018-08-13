@@ -10,12 +10,12 @@ namespace UnitOfWork.EF6UnitOfWork
     /// <summary>
     ///     Entity Framework IUnitOfWork Implementations
     /// </summary>
-    public class Ef6UnitOfWork : ITransactionalUnitOfWork, IDisposable
+    public class EF6UnitOfWork : ITransactionalUnitOfWork, IDisposable
     {
         private readonly IsolationLevel _isolationLevel;
         private DbContextTransaction _transaction;
 
-        public Ef6UnitOfWork(DbContext context, IsolationLevel isolationLevel)
+        public EF6UnitOfWork(DbContext context, IsolationLevel isolationLevel)
         {
             this.DbContext = context;
             this._isolationLevel = isolationLevel;
@@ -124,7 +124,7 @@ namespace UnitOfWork.EF6UnitOfWork
             // get rid of unmanaged resources
         }
 
-        ~Ef6UnitOfWork()
+        ~EF6UnitOfWork()
         {
             this.Dispose(false);
         }

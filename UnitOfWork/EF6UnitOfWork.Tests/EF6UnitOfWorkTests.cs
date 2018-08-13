@@ -24,7 +24,7 @@ namespace UnitOfWork.EF6UnitOfWork.Tests
             var connection = DbConnectionFactory.CreateTransient();
             this._context = new FooContext(connection);
 
-            this._unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
+            this._unitOfWork = new EF6UnitOfWork(this._context, IsolationLevel.Unspecified);
 
             var repository = new BaseRepository<Foo>(this._unitOfWork);
             this._repositoryWriter = repository;
@@ -60,7 +60,7 @@ namespace UnitOfWork.EF6UnitOfWork.Tests
             //Arrange
             var connection = DbConnectionFactory.CreateTransient();
             var context = new FooContext(connection);
-            var unitOfWork = new Ef6UnitOfWork(this._context, IsolationLevel.Unspecified);
+            var unitOfWork = new EF6UnitOfWork(this._context, IsolationLevel.Unspecified);
             var repository = new BaseRepository<Foo>(unitOfWork);
 
             //Act

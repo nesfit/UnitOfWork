@@ -22,11 +22,11 @@ namespace UnitOfWork.EF6Repository
         {
             if (unitOfWork == null)
                 throw new ArgumentException("IUnitOfWork cannot be null");
-            if (!(unitOfWork is Ef6UnitOfWork))
+            if (!(unitOfWork is EF6UnitOfWork.EF6UnitOfWork))
                 throw new ArgumentException("IUnitOfWork is not implemented by Ef6UnitOfWork class");
 
 
-            this._context = ((Ef6UnitOfWork) unitOfWork).DbContext;
+            this._context = ((EF6UnitOfWork.EF6UnitOfWork) unitOfWork).DbContext;
             this._dbSet = this._context.Set<T>();
         }
 
@@ -48,17 +48,17 @@ namespace UnitOfWork.EF6Repository
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await this._dbSet.ToListAsync();
+            return await this._dbSet.ToListAsync().ConfigureAwait(false);
         }
 
-        public virtual Task<T> GetByIdAsync(Guid id)
+        public virtual async Task<T> GetByIdAsync(Guid id)
         {
-            return this._dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            return await this._dbSet.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
         }
 
-        public virtual Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate)
+        public virtual async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate)
         {
-            return Task.Run(() => this.GetAllWhere(predicate));
+            return await Task.Run(() => this.GetAllWhere(predicate)).ConfigureAwait(false);
         }
 
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
@@ -110,29 +110,29 @@ namespace UnitOfWork.EF6Repository
         /// <exception cref="ArgumentException">Item with specified Id not found.</exception>
         public virtual async Task<T> DeleteAsync(Guid id)
         {
-            var item = await this.GetByIdAsync(id);
+            var item = await this.GetByIdAsync(id).ConfigureAwait(false);
 
             if (item == null) throw new ArgumentException($"Item of type [{typeof(T).FullName}] with Id = [{id}] not found");
 
-            return await this.DeleteAsync(item);
+            return await this.DeleteAsync(item).ConfigureAwait(false);
         }
 
-        public virtual Task<T> DeleteAsync(T item)
+        public virtual async Task<T> DeleteAsync(T item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item), "T item cannot be null.");
 
             this._context.Entry(item).State = EntityState.Deleted;
-            return Task.FromResult(item);
+            return await Task.FromResult(item).ConfigureAwait(false);
         }
 
-        public virtual Task<T> InsertAsync(T item)
+        public virtual async Task<T> InsertAsync(T item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item), "T item cannot be null.");
 
             this._context.Entry(item).State = EntityState.Added;
-            return Task.FromResult(item);
+            return await Task.FromResult(item).ConfigureAwait(false);
         }
 
         public virtual async Task<IEnumerable<T>> InsertRangeAsync(IEnumerable<T> items)
@@ -141,17 +141,17 @@ namespace UnitOfWork.EF6Repository
                 throw new ArgumentNullException(nameof(items), "T item cannot be null.");
 
             var insertRange = items as T[] ?? items.ToArray();
-            foreach (var item in insertRange) await this.InsertAsync(item);
+            foreach (var item in insertRange) await this.InsertAsync(item).ConfigureAwait(false);
             return insertRange;
         }
 
-        public virtual Task UpdateAsync(T item)
+        public virtual async Task UpdateAsync(T item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item), "T item cannot be null.");
 
             this._context.Entry(item).State = EntityState.Modified;
-            return Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(false);
         }
     }
 }
