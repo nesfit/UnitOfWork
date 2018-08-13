@@ -8,7 +8,7 @@
     <AssemblyName>UnitOfWork.InMemoryUnitOfWork.Tests</AssemblyName>
 
     <RootNamespace>UnitOfWork.InMemoryUnitOfWork.Tests</RootNamespace>
-	<Version>1.0.1</Version>
+	<Version>1.0.4</Version>
     <Authors>NES@FIT</Authors>
     <Company>BUT.NES@FIT</Company>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
