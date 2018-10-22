@@ -37,8 +37,12 @@ namespace UnitOfWork.EF6Repository
 
         public virtual T GetById(Guid id)
         {
-            var item = this._dbSet.FirstOrDefault(x => x.Id == id);
-            return item;
+            return this.GetSingleWhere(item => item.Id == id);
+        }
+
+        public T GetSingleWhere(Expression<Func<T, Boolean>> predicate)
+        {
+            return this._dbSet.FirstOrDefault(predicate);
         }
 
         public virtual IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> predicate)
@@ -51,9 +55,14 @@ namespace UnitOfWork.EF6Repository
             return await this._dbSet.ToListAsync().ConfigureAwait(false);
         }
 
-        public virtual async Task<T> GetByIdAsync(Guid id)
+        public virtual Task<T> GetByIdAsync(Guid id)
         {
-            return await this._dbSet.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
+            return this.GetSingleWhereAsync(x => x.Id == id);
+        }
+
+        public Task<T> GetSingleWhereAsync(Expression<Func<T, Boolean>> predicate)
+        {
+            return this._dbSet.FirstOrDefaultAsync(predicate);
         }
 
         public virtual async Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate)

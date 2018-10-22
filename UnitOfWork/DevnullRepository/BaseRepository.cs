@@ -19,6 +19,11 @@ namespace UnitOfWork.DevnullRepository
       return null;
     }
 
+    public TEntity GetSingleWhere(Expression<Func<TEntity, Boolean>> predicate)
+    {
+      return null;
+    }
+
     public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, Boolean>> predicate)
     {
       return new TEntity[0];
@@ -31,6 +36,11 @@ namespace UnitOfWork.DevnullRepository
     }
 
     public async Task<TEntity> GetByIdAsync(Guid id)
+    {
+      return await Task.FromResult<TEntity>(null);
+    }
+
+    public async Task<TEntity> GetSingleWhereAsync(Expression<Func<TEntity, Boolean>> predicate)
     {
       return await Task.FromResult<TEntity>(null);
     }

@@ -32,7 +32,12 @@ namespace UnitOfWork.ArangoDBRepository
 
         public TEntity GetById(Guid id)
         {
-            return this.Database.Query<TEntity>().FirstOrDefault(entity => entity.Id == id);
+            return this.GetSingleWhere(entity => entity.Id == id);
+        }
+
+        public TEntity GetSingleWhere(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return this.Database.Query<TEntity>().FirstOrDefault(predicate);
         }
 
         public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
@@ -45,9 +50,14 @@ namespace UnitOfWork.ArangoDBRepository
             return await this.Database.Query<TEntity>().ToListAsync().ConfigureAwait(false);
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await this.Database.Query<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id).ConfigureAwait(false);
+            return this.GetSingleWhereAsync(entity => entity.Id == id);
+        }
+
+        public Task<TEntity> GetSingleWhereAsync(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return this.Database.Query<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
