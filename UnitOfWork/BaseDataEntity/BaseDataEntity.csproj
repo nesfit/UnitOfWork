@@ -5,7 +5,7 @@
     <RootNamespace>UnitOfWork.BaseDataEntity</RootNamespace>
     <AssemblyName>UnitOfWork.BaseDataEntity</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<Version>1.0.4</Version>
+	<Version>1.0.5</Version>
     <Authors>NES@FIT</Authors>
     <Company>BUT.NES@FIT</Company>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
