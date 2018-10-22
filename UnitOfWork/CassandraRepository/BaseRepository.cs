@@ -14,6 +14,7 @@ namespace UnitOfWork.CassandraRepository
         IRepositoryWriterAsync<TEntity> where TEntity : class, IDataEntity
     {
         protected readonly ISession Session;
+        protected readonly Table<TEntity> Table;
 
         public BaseRepository(IUnitOfWork unitOfWork)
         {
@@ -29,8 +30,6 @@ namespace UnitOfWork.CassandraRepository
             this.Table.CreateIfNotExists(); //TODO is this a right place?
         }
 
-        public Table<TEntity> Table { get; set; }
-
         public IEnumerable<TEntity> GetAll()
         {
             return this.Table.Select(i => i).Execute();
@@ -38,7 +37,12 @@ namespace UnitOfWork.CassandraRepository
 
         public TEntity GetById(Guid id)
         {
-            return this.Table.First(entity => entity.Id == id).Execute();
+            return this.GetSingleWhere(entity => entity.Id == id);
+        }
+
+        public TEntity GetSingleWhere(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return this.Table.FirstOrDefault(predicate).Execute();
         }
 
         public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
@@ -46,19 +50,24 @@ namespace UnitOfWork.CassandraRepository
             return this.Table.Where(predicate);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this.Table.Select(i => i).ExecuteAsync().ConfigureAwait(false);
+            return this.Table.Select(i => i).ExecuteAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await this.Table.First(entity => entity.Id == id).ExecuteAsync().ConfigureAwait(false);
+            return this.GetSingleWhereAsync(entity => entity.Id == id);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        public Task<TEntity> GetSingleWhereAsync(Expression<Func<TEntity, Boolean>> predicate)
         {
-            return await this.Table.Where(predicate).ExecuteAsync().ConfigureAwait(false);
+            return this.Table.FirstOrDefault(predicate).ExecuteAsync();
+        }
+
+        public Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return this.Table.Where(predicate).ExecuteAsync();
         }
 
         public TEntity Delete(Guid id)

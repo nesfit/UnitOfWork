@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>UnitOfWork.InMemoryRepository</AssemblyName>
     <RootNamespace>UnitOfWork.InMemoryRepository</RootNamespace>
-	<Version>1.0.3</Version>
+	<Version>1.0.5</Version>
     <Authors>NES@FIT</Authors>
     <Company>BUT.NES@FIT</Company>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>

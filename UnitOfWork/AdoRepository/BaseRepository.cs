@@ -53,6 +53,11 @@ namespace UnitOfWork.AdoRepository
             return this.GetById(id, true);
         }
 
+        public T GetSingleWhere(Expression<Func<T, Boolean>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<T> GetAllWhere(Expression<Func<T, bool>> predicate)
         {
             throw new NotImplementedException();

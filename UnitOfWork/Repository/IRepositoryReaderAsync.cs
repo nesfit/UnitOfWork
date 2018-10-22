@@ -13,7 +13,7 @@ namespace UnitOfWork.Repository
     public interface IRepositoryReaderAsync<T> where T : class, IDataEntity
     {
         /// <summary>
-        ///     Gets all items in persistence storage asyncronously
+        ///     Gets all items in persistence storage asynchronously
         /// </summary>
         /// <returns>
         ///     A task that represents the asynchronous operation. The task result contains all items of type T in persistence
@@ -22,7 +22,7 @@ namespace UnitOfWork.Repository
         Task<IEnumerable<T>> GetAllAsync();
 
         /// <summary>
-        ///     Gets item by id asyncronously
+        ///     Gets item by id asynchronously
         /// </summary>
         /// <param name="id">Id of item to get</param>
         /// <returns>
@@ -32,10 +32,17 @@ namespace UnitOfWork.Repository
         Task<T> GetByIdAsync(Guid id);
         
         /// <summary>
+        ///     Get first item that satisfies a predicate
+        /// </summary>
+        /// <param name="predicate">Filter predicate</param>
+        /// <returns>The first item of type T in persistence storage which satisfy a predicate</returns>
+        Task<T> GetSingleWhereAsync(Expression<Func<T, Boolean>> predicate);        
+        
+        /// <summary>
         ///     Get all items filtered by a predicate
         /// </summary>
         /// <param name="predicate">Filter predicate</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains all items of type T in persistence storage which satisfy a predicate</returns>
-        Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> GetAllWhereAsync(Expression<Func<T, Boolean>> predicate);
     }
 }
