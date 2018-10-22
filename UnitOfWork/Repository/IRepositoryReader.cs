@@ -25,6 +25,13 @@ namespace UnitOfWork.Repository
         T GetById(Guid id);
         
         /// <summary>
+        ///     Get first item that satisfies a predicate
+        /// </summary>
+        /// <param name="predicate">Filter predicate</param>
+        /// <returns>The first item of type T in persistence storage which satisfy a predicate</returns>
+        T GetSingleWhere(Expression<Func<T, bool>> predicate);
+        
+        /// <summary>
         ///     Get all items filtered by a predicate
         /// </summary>
         /// <param name="predicate">Filter predicate</param>

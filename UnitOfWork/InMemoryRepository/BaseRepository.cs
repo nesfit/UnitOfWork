@@ -31,6 +31,11 @@ namespace UnitOfWork.InMemoryRepository
             return this._data.FirstOrDefault(entity => entity.Id == id);
         }
 
+        public TEntity GetSingleWhere(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return this._data.FirstOrDefault(predicate.Compile());
+        }
+
         public IEnumerable<TEntity> GetAllWhere(Expression<Func<TEntity, bool>> predicate)
         {
             return this._data.Where(predicate.Compile());
@@ -44,6 +49,11 @@ namespace UnitOfWork.InMemoryRepository
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await Task.FromResult(this.GetById(id)).ConfigureAwait(false);
+        }
+
+        public async Task<TEntity> GetSingleWhereAsync(Expression<Func<TEntity, Boolean>> predicate)
+        {
+            return await Task.FromResult(this.GetSingleWhere(predicate)).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllWhereAsync(Expression<Func<TEntity, bool>> predicate)

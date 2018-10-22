@@ -12,9 +12,9 @@ namespace UnitOfWork.DevnullUnitOfWork
         {
         }
 
-        public async Task SaveChangesAsync()
+        public Task SaveChangesAsync()
         {
-            await Task.CompletedTask.ConfigureAwait(false);
+            return null;
         }
     }
 }
