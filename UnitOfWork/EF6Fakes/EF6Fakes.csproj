@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>UnitOfWork.EF6Fakes</AssemblyName>
     <RootNamespace>UnitOfWork.EF6Fakes</RootNamespace>
 	<Version>1.0.4</Version>
