@@ -14,7 +14,7 @@ namespace UnitOfWork.DevnullUnitOfWork
 
         public Task SaveChangesAsync()
         {
-            return null;
+            return Task.CompletedTask;
         }
     }
 }
